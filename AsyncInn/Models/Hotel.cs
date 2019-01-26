@@ -7,13 +7,15 @@ namespace AsyncInn.Models
 {
     public class Hotel
     {
-        // Model properties
+        // Primary Key
         public int ID { get; set; }
+
+        // Other properties
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
 
-        // Navigation Properies
+        // Navigation properies
         public ICollection<HotelRoom> HotelRooms { get; set; }
     }
 }
