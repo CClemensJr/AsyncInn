@@ -9,28 +9,30 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top">
         <a href="#" class="navbar-brand">Async Inn</a>
-        <button class="navbard-toggler" data-toggle="collapse" data-target="#navbarCollapse">Open</button>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="navbar-item">
-                    <a href="~/Views/Home/Index.cshtml" class="nav-link">Home</a>
+                    <a href="~/Home/Index.cshtml" class="nav-link">Home</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Views/Hotels/Index.cshtml" class="nav-link">Hotels</a>
+                    <a href="~/Hotels/Index.cshtml" class="nav-link">Hotels</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Views/HotelRooms/Index.cshtml" class="nav-link">Hotel Rooms</a>
+                    <a href="~/HotelRooms/Index.cshtml" class="nav-link">Hotel Rooms</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Views/Rooms/Index.cshtml" class="nav-link">Rooms</a>
+                    <a href="~/Rooms/Index.cshtml" class="nav-link">Rooms</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Views/RoomAmenities/Index.cshtml" class="nav-link">RoomAmenities</a>
+                    <a href="~/RoomAmenities/Index.cshtml" class="nav-link">RoomAmenities</a>
                 </li>
                 <li class="navbar-item">
-                    <a href="~/Views/Amenities/Index.cshtml" class="nav-link">Amenities</a>
+                    <a href="~/Amenities/Index.cshtml" class="nav-link">Amenities</a>
                 </li>
             </ul>
         </div>
