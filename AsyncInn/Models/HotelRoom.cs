@@ -13,6 +13,7 @@ namespace AsyncInn.Models
         public decimal RoomID { get; set; }
 
         // Other properties
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Rate { get; set; }
         public byte PetFriendly { get; set; }
 
