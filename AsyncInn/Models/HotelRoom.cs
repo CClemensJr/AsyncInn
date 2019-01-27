@@ -1,4 +1,6 @@
-﻿namespace AsyncInn.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AsyncInn.Models
 {
     public class HotelRoom
     {
@@ -7,6 +9,7 @@
         public int RoomNumber { get; set; }
 
         // Foreign Key
+        [Column(TypeName = "decimal(18,2)")]
         public decimal RoomID { get; set; }
 
         // Other properties
