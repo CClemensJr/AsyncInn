@@ -16,8 +16,7 @@ namespace AsyncInn.Models
 
         // Foreign Key
         [ForeignKey("Room")]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal RoomID { get; set; }
+        public int RoomID { get; set; }
 
         // Other properties
         [Column(TypeName = "decimal(18,2)")]
