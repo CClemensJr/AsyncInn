@@ -8,7 +8,7 @@
 ```
 
 ## example
-![alt text](https://github.com/CClemensJr/Lab08-LINQInManhattan/blob/master/Assets/manhattan.PNG)
+![alt text](https://github.com/CClemensJr/AsyncInn/blob/master/AsyncInn/wwwroot/images/homepage.PNG)
 
 ## usage
 ```
@@ -31,7 +31,7 @@
 ```
 
 ## schema
-![alt text](https://github.com/CClemensJr/Lab08-LINQInManhattan/blob/master/Assets/manhattan.PNG)
+![alt text](https://github.com/CClemensJr/AsyncInn/blob/master/AsyncInn/wwwroot/images/schema.PNG)
 
 ### overview
 ```
