@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190128193516_AddHotel")]
+    partial class AddHotel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,33 +33,6 @@ namespace AsyncInn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Toaster"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Beach View"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Waterbed"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Coffee Machine"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "Pool"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
@@ -87,34 +62,6 @@ namespace AsyncInn.Migrations
                             ID = 1,
                             Address = "123 N 82nd Ave, Sporkland, MI 53401",
                             Name = "Hotel Landria",
-                            Phone = "555-555-5555"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Address = "124 N 94th Ave, Avertine, WA 98002",
-                            Name = "Hotel Alfansa",
-                            Phone = "555-555-5555"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Address = "1 N 15th Ave, Phoenix, AZ 85307",
-                            Name = "Hotel Valdabash",
-                            Phone = "555-555-5555"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Address = "12000 N 142nd St, Yorktown, VA 24501",
-                            Name = "Hotel Flatlinaz",
-                            Phone = "555-555-5555"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Address = "456 S 78910 Ave, Beachtown, CA 24512",
-                            Name = "Hotel Bizzle",
                             Phone = "555-555-5555"
                         });
                 });
@@ -158,44 +105,6 @@ namespace AsyncInn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Rooms");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Layout = 0,
-                            Name = "Shuster Special"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Layout = 0,
-                            Name = "Samurai Slinky"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Layout = 1,
-                            Name = "Seattle Showdown"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Layout = 1,
-                            Name = "Slate Slade"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Layout = 2,
-                            Name = "Sapien Surge"
-                        },
-                        new
-                        {
-                            ID = 6,
-                            Layout = 2,
-                            Name = "Shaddleback Shade"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenities", b =>

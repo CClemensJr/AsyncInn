@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190128194014_seedhotels")]
+    partial class seedhotels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,33 +33,6 @@ namespace AsyncInn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Toaster"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Beach View"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Waterbed"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Name = "Coffee Machine"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Name = "Pool"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
@@ -158,44 +133,6 @@ namespace AsyncInn.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Rooms");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Layout = 0,
-                            Name = "Shuster Special"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Layout = 0,
-                            Name = "Samurai Slinky"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Layout = 1,
-                            Name = "Seattle Showdown"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Layout = 1,
-                            Name = "Slate Slade"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Layout = 2,
-                            Name = "Sapien Surge"
-                        },
-                        new
-                        {
-                            ID = 6,
-                            Layout = 2,
-                            Name = "Shaddleback Shade"
-                        });
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenities", b =>
