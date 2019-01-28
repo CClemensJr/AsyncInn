@@ -2,7 +2,7 @@
     margin-top: 10%;
 }
 
-.navbar-default {
-    /*background-color: black;*/
+.bd-navbar {
+    background-color: rgb(86, 61, 124);
     color: orangered;
 }
