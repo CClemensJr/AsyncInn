@@ -30,6 +30,25 @@
 	5. Run the application.
 ```
 
+## schema
+![alt text](https://github.com/CClemensJr/Lab08-LINQInManhattan/blob/master/Assets/manhattan.PNG)
+
+### overview
+```
+	A Hotel has many HotelRooms, but a HotelRoom can belong to only one Hotel.
+	A HotelRoom can belong to only one Room but a Room can have many HotelRooms.
+	A Room can have many RoomAmenities but RoomAmenities can only belong to one Room.
+	Amenities can have many RoomAmenities but RoomAmenities can only have one Amenities.
+```
+
+### relationships
+```
+	A Hotel object contains the name, address, and phone number for each location. The HotelRoom table is
+	a way of linking up Rooms to Hotels in the system. A Room is essentially a layout so each HotelRoom
+	can only be based on one layout. These Room layouts also include the RoomAmenities which links
+	the Room to the Amenities in the systen.
+```
+
 ## author
 
 * **Charles Clemens** - *Initial work* - [CClemensJr](https://github.com/CClemensJr)
