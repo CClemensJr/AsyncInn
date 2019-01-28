@@ -14,6 +14,7 @@ namespace AsyncInn.Models
         [MaxLength(250)]
         [MinLength(6)]
         public string Name { get; set; }
+
         [Required]
         public int Layout { get; set; }
 
