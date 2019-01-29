@@ -1,16 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AsyncInn.Models
 {
     public class HotelRoom
     {
         // Composite Keys
+        [Key]
+        [Column(Order=1)]
         public int HotelID { get; set; }
+
+        [Key]
+        [Column(Order=2)]
         public int RoomNumber { get; set; }
 
         // Foreign Key
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal RoomID { get; set; }
+        [ForeignKey("Room")]
+        public int RoomID { get; set; }
 
         // Other properties
         [Column(TypeName = "decimal(18,2)")]
