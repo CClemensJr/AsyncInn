@@ -1,4 +1,5 @@
-﻿using AsyncInn.Models.Interfaces;
+﻿using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace AsyncInn.Models.Services
 {
     public class HotelManagementService : IHotelManager
     {
+        private AsyncInnDbContext _context { get; }
+
+        public HotelManagementService(AsyncInnDbContext context)
+        {
+
+        }
+
         public Task AddNewHotel(Hotel hotel)
         {
             throw new NotImplementedException();
