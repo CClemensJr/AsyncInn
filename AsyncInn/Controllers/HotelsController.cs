@@ -13,17 +13,21 @@ namespace AsyncInn.Controllers
 {
     public class HotelsController : Controller
     {
-        private readonly IHotelManager _hotelManager;
+        private readonly IHotelManager _manager;
 
-        public HotelsController(IHotelManager hotelManager)
+        public HotelsController(IHotelManager manager)
         {
-            _hotelManager = hotelManager;
+            _manager = manager;
         }
 
         // GET: Hotels
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Hotels.ToListAsync());
+        //}
+        public async Task<ActionResult> Index()
         {
-            return View(await _context.Hotels.ToListAsync());
+            return View(await _manager.GetAllHotels());
         }
 
         // GET: Hotels/Details/5
