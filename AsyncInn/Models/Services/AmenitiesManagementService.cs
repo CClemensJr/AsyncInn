@@ -21,7 +21,7 @@ namespace AsyncInn.Models.Services
             throw new NotImplementedException();
         }
 
-        public void DeleteAmenity(int id)
+        public Task<Amenities> GetAmenity(int id)
         {
             throw new NotImplementedException();
         }
@@ -31,12 +31,13 @@ namespace AsyncInn.Models.Services
             throw new NotImplementedException();
         }
 
-        public Task<Amenities> GetAmenity(int id)
+
+        public void UpdateAmenity(Amenities amenities)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateAmenity(Amenities amenities)
+        public void DeleteAmenity(int id)
         {
             throw new NotImplementedException();
         }
