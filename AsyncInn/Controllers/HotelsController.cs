@@ -31,21 +31,25 @@ namespace AsyncInn.Controllers
         }
 
         // GET: Hotels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var hotel = await _context.Hotels
+        //        .FirstOrDefaultAsync(m => m.ID == id);
+        //    if (hotel == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(hotel);
+        //}
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (hotel == null)
-            {
-                return NotFound();
-            }
-
-            return View(hotel);
+            return View(await _manager.GetHotelDetails(id));
         }
 
         // GET: Hotels/Create
