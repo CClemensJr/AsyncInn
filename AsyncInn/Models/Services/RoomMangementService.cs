@@ -29,9 +29,9 @@ namespace AsyncInn.Models.Services
             return await _table.Rooms.FirstOrDefaultAsync(r => r.ID == id);
         }
 
-        public Task<IEnumerable<Room>> GetAllRooms()
+        public async Task<IEnumerable<Room>> GetAllRooms()
         {
-            throw new NotImplementedException();
+            return await _table.Rooms.ToListAsync();
         }
 
         public void EditRoomDetails(Room room)
