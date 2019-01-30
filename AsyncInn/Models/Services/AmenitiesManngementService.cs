@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.Services
 {
-    public class AmenitiesManngementService : IAmenitiesManager
+    public class AmenitiesManagementService : IAmenitiesManager
     {
         private AsyncInnDbContext _table { get; }
+
+        public AmenitiesManagementService(AsyncInnDbContext table)
+        {
+            _table = table;
+        }
 
         public Task AddAmenity(Amenities amenities)
         {
