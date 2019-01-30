@@ -9,16 +9,23 @@ namespace AsyncInn.Models.Services
 {
     public class HotelManagementService : IHotelManager
     {
-        private AsyncInnDbContext _context { get; }
+        private AsyncInnDbContext _hotel { get; }
 
-        public HotelManagementService(AsyncInnDbContext context)
+        public HotelManagementService(AsyncInnDbContext hotel)
         {
-
+            _hotel = hotel;
         }
 
-        public Task AddNewHotel(Hotel hotel)
+        /// <summary>
+        /// The AddNewHotel method takes in a Hotel object and adds it to the database
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns></returns>
+        public async Task AddNewHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            _hotel.Hotels.Add(hotel);
+
+            await _hotel.SaveChangesAsync();
         }
 
         public void DeleteHotel(int id)
