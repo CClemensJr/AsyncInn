@@ -11,6 +11,11 @@ namespace AsyncInn.Models.Services
     {
         private AsyncInnDbContext _room { get; }
 
+        public RoomMangementService (AsyncInnDbContext room)
+        {
+            _room = room;
+        }
+
         public Task AddNewRoom(Room room)
         {
             throw new NotImplementedException();
