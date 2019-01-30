@@ -16,12 +16,12 @@ namespace AsyncInn.Models.Services
             _table = table;
         }
 
-        public Task AddAmenity(Amenities amenities)
+        public Task AddAmenities(Amenities amenities)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Amenities> GetAmenity(int id)
+        public Task<Amenities> GetAllAmenities(int id)
         {
             throw new NotImplementedException();
         }
