@@ -37,7 +37,9 @@ namespace AsyncInn.Models.Services
 
         public void UpdateAmenity(Amenities amenities)
         {
-            throw new NotImplementedException();
+            _table.Update(amenities);
+
+            _table.SaveChangesAsync();
         }
 
         public void DeleteAmenities(int id)
