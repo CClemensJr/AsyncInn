@@ -1,5 +1,7 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace AsyncInn.Models.Services
         /// The AddNewHotel method takes in a Hotel object and adds it to the database
         /// </summary>
         /// <param name="hotel"></param>
-        /// <returns></returns>
+        /// <returns>Returns a task</returns>
         public async Task AddNewHotel(Hotel hotel)
         {
             _hotel.Hotels.Add(hotel);
@@ -28,24 +30,43 @@ namespace AsyncInn.Models.Services
             await _hotel.SaveChangesAsync();
         }
 
-        public void DeleteHotel(int id)
+
+        /// <summary>
+        /// The GetHotelDetails method takes in an id and returns the details for the hotel with the associated ID
+        /// </summary>
+        /// <returns>Returns a task</returns>
+        public async Task<Hotel> GetHotelDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _hotel.Hotels.FirstOrDefaultAsync(h => h.ID == id);
         }
 
+
+        /// <summary>
+        /// The EditHotelDetails method takes a hotel object, modifies it, then saves it to the database
+        /// </summary>
+        /// <param name="hotel"></param>
         public void EditHotelDetails(Hotel hotel)
         {
-            throw new NotImplementedException();
+            _hotel.Update(hotel);
+             _hotel.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Hotel>> GetAllHotelDetails()
+
+        /// <summary>
+        /// The DeleteHotel method takes in a Hotel ID and deletes the record from the database
+        /// </summary>
+        /// <param name="id"></param>
+        public void DeleteHotel(int id)
         {
-            throw new NotImplementedException();
+            // Create a hotel object if there is a Hotel ID that matches the incoming ID
+            Hotel hotel = _hotel.Hotels.FirstOrDefault(h => h.ID == id);
+            // Remove the hotel object from the database
+            _hotel.Hotels.Remove(hotel);
+            // Save the changes to the database
+            _hotel.SaveChanges();
         }
 
-        public Task<Hotel> GetHotelDetails(int id)
-        {
-            throw new NotImplementedException();
-        }
+
+
     }
 }
