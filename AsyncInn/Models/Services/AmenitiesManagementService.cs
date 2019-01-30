@@ -16,17 +16,19 @@ namespace AsyncInn.Models.Services
             _table = table;
         }
 
-        public Task AddAmenities(Amenities amenities)
+        public async Task AddAmenities(Amenities amenities)
+        {
+            _table.Amenities.Add(amenities);
+
+            await _table.SaveChangesAsync();
+        }
+
+        public Task<Amenities> GetAmenities(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Amenities> GetAllAmenities(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Amenities>> GetAmenities()
+        public Task<IEnumerable<Amenities>> GetAllAmenities()
         {
             throw new NotImplementedException();
         }
@@ -37,7 +39,7 @@ namespace AsyncInn.Models.Services
             throw new NotImplementedException();
         }
 
-        public void DeleteAmenity(int id)
+        public void DeleteAmenities(int id)
         {
             throw new NotImplementedException();
         }
