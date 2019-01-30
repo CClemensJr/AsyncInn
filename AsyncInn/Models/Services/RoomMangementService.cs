@@ -9,16 +9,18 @@ namespace AsyncInn.Models.Services
 {
     public class RoomMangementService : IRoomManager
     {
-        private AsyncInnDbContext _room { get; }
+        private AsyncInnDbContext _table { get; }
 
-        public RoomMangementService (AsyncInnDbContext room)
+        public RoomMangementService (AsyncInnDbContext table)
         {
-            _room = room;
+            _table = table;
         }
 
-        public Task AddNewRoom(Room room)
+        public async Task AddNewRoom(Room room)
         {
-            throw new NotImplementedException();
+            _table.Rooms.Add(room);
+            await _table.SaveChangesAsync();
+
         }
 
         public Task<Room> GetRoomDetails(int id)

@@ -11,11 +11,11 @@ namespace AsyncInn.Models.Services
 {
     public class HotelManagementService : IHotelManager
     {
-        private AsyncInnDbContext _hotel { get; }
+        private AsyncInnDbContext _table { get; }
 
-        public HotelManagementService(AsyncInnDbContext hotel)
+        public HotelManagementService(AsyncInnDbContext table)
         {
-            _hotel = hotel;
+            _table = table;
         }
 
         /// <summary>
@@ -25,9 +25,9 @@ namespace AsyncInn.Models.Services
         /// <returns>Returns a task</returns>
         public async Task AddNewHotel(Hotel hotel)
         {
-            _hotel.Hotels.Add(hotel);
+            _table.Hotels.Add(hotel);
 
-            await _hotel.SaveChangesAsync();
+            await _table.SaveChangesAsync();
         }
 
 
@@ -37,7 +37,7 @@ namespace AsyncInn.Models.Services
         /// <returns>Returns a task</returns>
         public async Task<Hotel> GetHotelDetails(int id)
         {
-            return await _hotel.Hotels.FirstOrDefaultAsync(h => h.ID == id);
+            return await _table.Hotels.FirstOrDefaultAsync(h => h.ID == id);
         }
 
 
@@ -47,7 +47,7 @@ namespace AsyncInn.Models.Services
         /// <returns></returns>
         public async Task<IEnumerable<Hotel>> GetAllHotels()
         {
-            return await _hotel.Hotels.ToListAsync();
+            return await _table.Hotels.ToListAsync();
         }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace AsyncInn.Models.Services
         /// <param name="hotel"></param>
         public void EditHotelDetails(Hotel hotel)
         {
-            _hotel.Update(hotel);
-             _hotel.SaveChangesAsync();
+            _table.Update(hotel);
+             _table.SaveChangesAsync();
         }
 
 
@@ -68,11 +68,11 @@ namespace AsyncInn.Models.Services
         public void DeleteHotel(int id)
         {
             // Create a hotel object if there is a Hotel ID that matches the incoming ID
-            Hotel hotel = _hotel.Hotels.FirstOrDefault(h => h.ID == id);
+            Hotel hotel = _table.Hotels.FirstOrDefault(h => h.ID == id);
             // Remove the hotel object from the database
-            _hotel.Hotels.Remove(hotel);
+            _table.Hotels.Remove(hotel);
             // Save the changes to the database
-            _hotel.SaveChanges();
+            _table.SaveChanges();
         }
 
     }
