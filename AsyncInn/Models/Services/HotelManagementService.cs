@@ -42,6 +42,15 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
+        /// The GetAllHotelDetail methods returns all hotels
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<Hotel>> GetAllHotels()
+        {
+            return await _hotel.Hotels.ToListAsync();
+        }
+
+        /// <summary>
         /// The EditHotelDetails method takes a hotel object, modifies it, then saves it to the database
         /// </summary>
         /// <param name="hotel"></param>
@@ -65,8 +74,6 @@ namespace AsyncInn.Models.Services
             // Save the changes to the database
             _hotel.SaveChanges();
         }
-
-
 
     }
 }
