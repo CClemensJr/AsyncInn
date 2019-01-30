@@ -44,7 +44,11 @@ namespace AsyncInn.Models.Services
 
         public void DeleteAmenities(int id)
         {
-            throw new NotImplementedException();
+            Amenities amenities = _table.Amenities.FirstOrDefault(a => a.ID == id);
+
+            _table.Remove(amenities);
+
+            _table.SaveChanges();
         }
     }
 }
