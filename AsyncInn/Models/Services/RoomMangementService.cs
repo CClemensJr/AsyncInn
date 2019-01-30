@@ -36,7 +36,8 @@ namespace AsyncInn.Models.Services
 
         public void EditRoomDetails(Room room)
         {
-            throw new NotImplementedException();
+            _table.Update(room);
+            _table.SaveChangesAsync();
         }
 
         public void DeleteRoom(int id)
