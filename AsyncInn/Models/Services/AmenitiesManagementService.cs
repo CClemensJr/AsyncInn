@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace AsyncInn.Models.Services
             await _table.SaveChangesAsync();
         }
 
-        public Task<Amenities> GetAmenities(int id)
+        public async Task<Amenities> GetAmenities(int id)
         {
-            throw new NotImplementedException();
+            return await _table.Amenities.FirstOrDefaultAsync(a => a.ID == id);
         }
 
         public Task<IEnumerable<Amenities>> GetAllAmenities()
