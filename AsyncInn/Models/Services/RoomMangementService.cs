@@ -42,7 +42,10 @@ namespace AsyncInn.Models.Services
 
         public void DeleteRoom(int id)
         {
-            throw new NotImplementedException();
+            Room room = _table.Rooms.FirstOrDefault(r => r.ID == id);
+
+            _table.Rooms.Remove(room);
+            _table.SaveChanges();
         }
     }
 }
