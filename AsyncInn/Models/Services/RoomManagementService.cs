@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.Services
 {
-    public class RoomMangementService : IRoomManager
+    public class RoomManagementService : IRoomManager
     {
         private AsyncInnDbContext _table { get; }
 
-        public RoomMangementService (AsyncInnDbContext table)
+        public RoomManagementService (AsyncInnDbContext table)
         {
             _table = table;
         }
