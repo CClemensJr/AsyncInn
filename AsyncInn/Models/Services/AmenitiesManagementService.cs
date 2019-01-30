@@ -29,9 +29,9 @@ namespace AsyncInn.Models.Services
             return await _table.Amenities.FirstOrDefaultAsync(a => a.ID == id);
         }
 
-        public Task<IEnumerable<Amenities>> GetAllAmenities()
+        public async Task<IEnumerable<Amenities>> GetAllAmenities()
         {
-            throw new NotImplementedException();
+            return await _table.Amenities.ToListAsync();
         }
 
 
