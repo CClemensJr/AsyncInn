@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace AsyncInn.Models.Services
 
         }
 
-        public Task<Room> GetRoomDetails(int id)
+        public async Task<Room> GetRoomDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _table.Rooms.FirstOrDefaultAsync(r => r.ID == id);
         }
 
         public Task<IEnumerable<Room>> GetAllRooms()
