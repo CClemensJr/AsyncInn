@@ -3,9 +3,10 @@
 @{
     ViewData["Title"] = "Index";
 
-    string bartext = "Amenities";
+    ViewData["BarText"] = "Amenities";
 }
 
+<partial name="~/Views/Shared/_SearchBar.cshtml" view-data="ViewData" />
 
 <p>
     <a asp-action="Create">Create New</a>
