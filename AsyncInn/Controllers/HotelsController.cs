@@ -52,6 +52,7 @@ namespace AsyncInn.Controllers
             return View(await _manager.GetHotelDetails(id));
         }
 
+
         // GET: Hotels/Create
         public IActionResult Create()
         {
@@ -59,18 +60,29 @@ namespace AsyncInn.Controllers
         }
 
         // POST: Hotels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(hotel);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(hotel);
+        //}
+
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(_manager.AddNewHotel(hotel));
             }
+
             return View(hotel);
         }
 
