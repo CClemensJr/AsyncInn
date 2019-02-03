@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["BarText"] = "Rooms";
 }
+
+<partial name="~/Views/Shared/_SearchBar.cshtml" view-data="ViewData" />
 
 <h1>Index</h1>
 

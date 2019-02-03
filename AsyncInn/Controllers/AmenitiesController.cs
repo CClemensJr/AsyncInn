@@ -22,6 +22,8 @@ namespace AsyncInn.Controllers
         // GET: Amenities
         public async Task<IActionResult> Index()
         {
+            ViewData["BarText"] = "Amenities";
+
             return View(await _context.Amenities.ToListAsync());
         }
 

@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "/Views/Shared/_Layout.cshtml";
+
+    //ViewData["BarText"] = "Amenities";
 }
 
-<h1>AMENITIES#Index</h1>
+<partial name="~/Views/Shared/_SearchBar.cshtml" view-data="ViewData" />
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -34,3 +35,5 @@
 }
     </tbody>
 </table>
+
+
