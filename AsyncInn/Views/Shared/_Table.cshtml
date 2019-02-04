@@ -3,6 +3,26 @@
     {
         @model IEnumerable<AsyncInn.Models.Hotel>
     }
+
+    if (@ViewData["Title"] == "Hotel Rooms")
+    {
+        @model IEnumerable<AsyncInn.Models.HotelRoom>
+    }
+
+    if (@ViewData["Title"] == "Rooms")
+    {
+        @model IEnumerable<AsyncInn.Models.Room>
+    }
+
+    if (@ViewData["Title"] == "Room Amenities")
+    {
+        @model IEnumerable<AsyncInn.Models.RoomAmenities>
+    }
+
+    if (@ViewData["Title"] == "Amenities")
+    {
+        @model IEnumerable<AsyncInn.Models.Amenities>
+    }
 }
 
 <table class="table table-striped">
