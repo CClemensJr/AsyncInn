@@ -1,42 +1,38 @@
 ﻿@model IEnumerable<AsyncInn.Models.RoomAmenities>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Room Amenities";
 }
 
-<h1>Index</h1>
+<partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amenities)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amenities.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.ID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="bg-info">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amenities)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amenities.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>

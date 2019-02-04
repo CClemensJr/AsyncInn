@@ -4,41 +4,49 @@
 }
 
 
-<div class="container">
-        <img src="~/images/hotelHallway.jpg" asp-append-version="true" class="img-fluid" style="z-index:-100; max-width:100%; max-height: 75%" />
-        <h1 class="display-4" style="z-index: 100">Welcome to the Async Inn Hotel Management System</h1>
-        <p class="lead" style="z-index: 100">Lets make life great for our guests<p>
-        <hr class="my-4">
+<div class="jumbotron jumbotron-fluid bg-warning">
+    <div class="container">
+        <h1 class="display-3 text-left">Welcome to The Async Inn</h1>
+        <h2 class="display-6 text-right">Hotel Management System</h2>
+        <p class="lead text-center pt-3">Your only stop for adding, updating, editing, and deleting hotels, rooms, and amenities.</p>
+    </div>
 </div>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card col-sm-3" style="width: 20rem;">
-            <img class="card-img-top" src="~/images/hotel.jpg" alt="Card image cap">
+        <div class="card bg-info col-sm-3" style="width: 20rem;">
+            <img class="card-img-top mt-3" src="~/images/hotel.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Hotels</h5>
                 <p class="card-text">Manage hotel location details.</p>
-                <a href="/Hotels/Create" class="btn btn-primary">Create Hotel</a>
+                <div class="row justify-content-center">
+                    <a href="/Hotels/Create" class="btn btn-outline-warning">Create Hotel</a>
+                </div>
             </div>
         </div>
 
-        <div class="card col-sm-3 offset-1" style="width: 20rem;">
-            <img class="card-img-top" src="~/images/room.jpg" alt="Card image cap">
+        <div class="card bg-info col-sm-3 offset-1" style="width: 20rem;">
+            <img class="card-img-top mt-3" src="~/images/room.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Rooms</h5>
                 <p class="card-text">Manage room details.</p>
-                <a href="/Rooms/Create" class="btn btn-primary">Create Room</a>
+                <div class="row justify-content-center">
+                    <a href="/Rooms/Create" class="btn btn-outline-warning">Create Room</a>
+                </div>
             </div>
         </div>
 
-        <div class="card col-sm-3 offset-1" style="width: 20rem;">
-            <img class="card-img-top" src="~/images/amenities.jpg" alt="Card image cap">
+        <div class="card bg-info col-sm-3 offset-1" style="width: 20rem;">
+            <img class="card-img-top mt-3" src="~/images/amenities.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Amenities</h5>
                 <p class="card-text">Manage amenity details.</p>
-                <a href="/Amenities/Create" class="btn btn-primary">Create Amenities</a>
+                <div class="row justify-content-center">
+                    <a href="/Amenities/Create" class="btn btn-outline-warning">Create Amenities</a>
+                </div>
             </div>
         </div>
+
 
     </div>
 </div>

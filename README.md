@@ -1,5 +1,6 @@
 # async inn
-< the only hotel chain where guests can come and go as they please... at the same time.
+> the only hotel chain where guests can come and go as they please... at the same time.
+> please visits[https://asyncinnbychachaclem.azurewebsites.net/] to learn more!
 
 ## summary
 ```

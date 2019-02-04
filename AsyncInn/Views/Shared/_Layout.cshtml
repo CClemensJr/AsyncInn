@@ -10,41 +10,41 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="container">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md bd-navbar">
-        <a href="#" class="navbar-brand">Async Inn</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="navbar-item">
-                    <a href="/Home/Index" class="nav-link active">Home</a>
-                </li>
+    <nav class="navbar navbar-light bg-warning navbar-expand-md bd-navbar">
+        <div class="container">
+            <a href="/Home/Index" class="navbar-brand">The Async Inn</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <li class="navbar-item">
-                    <a href="/Hotels/Index" class="nav-link inactive">Hotels</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/HotelRooms/Index" class="nav-link inactive">Hotel Rooms</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/Rooms/Index" class="nav-link inactive">Rooms</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/RoomAmenities/Index" class="nav-link inactive">RoomAmenities</a>
-                </li>
-                <li class="navbar-item">
-                    <a href="/Amenities/Index" class="nav-link inactive">Amenities</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="navbar-item">
+                        <a href="/Home/Index" class="nav-link active">Home</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Hotels/Index" class="nav-link inactive">Hotels</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/HotelRooms/Index" class="nav-link inactive">Hotel Rooms</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Rooms/Index" class="nav-link inactive">Rooms</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/RoomAmenities/Index" class="nav-link inactive">RoomAmenities</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Amenities/Index" class="nav-link inactive">Amenities</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    </div>
-
-    <div class="container">
+    <div>
         @RenderBody()
     </div>
+
 </body>
 </html>
