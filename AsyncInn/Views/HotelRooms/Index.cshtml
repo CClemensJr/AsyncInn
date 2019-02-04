@@ -4,16 +4,9 @@
     ViewData["Title"] = "Hotel Rooms";
 }
 
-<div class="jumbotron jumbotron-fluid bg-warning">
-    <div class="container">
-        <h1 class="display-3 text-left">Hotel Rooms</h1>
-    </div>
-</div>
+<partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" />
 
 <div class="container">
-    <a asp-action="Create" class="btn btn-outline-info">Add a hotel room</a>
-    <partial name="~/Views/Shared/_SearchBar.cshtml" view-data="ViewData" />
-
     <table class="table table-striped">
         <thead class="bg-info">
             <tr>
