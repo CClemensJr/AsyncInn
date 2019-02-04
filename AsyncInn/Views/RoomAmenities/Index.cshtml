@@ -11,36 +11,36 @@
     </div>
 </div>
 
-<div>
+<div class="container">
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-outline-info">Add new room amenity</a>
     </p>
+    <table class="table">
+        <thead class="bg-info">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amenities)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amenities.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.ID)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amenities)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amenities.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.ID)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
