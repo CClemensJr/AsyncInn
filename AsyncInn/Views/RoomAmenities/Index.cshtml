@@ -28,19 +28,19 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amenities.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.ID)
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-    }
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amenities.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+             }
         </tbody>
     </table>
 </div>
