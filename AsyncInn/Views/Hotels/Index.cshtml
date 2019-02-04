@@ -1,16 +1,11 @@
 ﻿@model IEnumerable<AsyncInn.Models.Hotel>
 
 @{
-    ViewData["Title"] = "Index";
-    ViewData["BarText"] = "Hotels";
+    ViewData["Title"] = "Hotels";
 }
 
 
-<div class="jumbotron jumbotron-fluid bg-warning">
-    <div class="container">
-        <h1 class="display-3 text-left">Hotels</h1>
-    </div>
-</div>
+<partial name="~/Views/Shared/_PageHeading.cshtml" view-data="ViewData" />
 
 <div class="container">
     <a asp-action="Create" class="btn btn-outline-info">Add a new hotel</a>
