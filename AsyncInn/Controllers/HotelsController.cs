@@ -28,7 +28,7 @@ namespace AsyncInn.Controllers
         /// <summary>
         /// This action returns all table data to the Index page
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
         {
             return View(await _hotel.GetAllHotels());
@@ -38,7 +38,7 @@ namespace AsyncInn.Controllers
         /// This action takes an id and sends an object with that ID to the view if it exists in the database
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Details(int id)
         {
             var hotel = await _hotel.GetHotelDetails(id);
@@ -51,7 +51,10 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Create
+        /// <summary>
+        /// This method renders the Create() view
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public IActionResult Create()
         {
             return View();
