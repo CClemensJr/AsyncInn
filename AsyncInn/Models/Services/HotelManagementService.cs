@@ -51,10 +51,12 @@ namespace AsyncInn.Models.Services
             if (await _table.Hotels.FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
             {
                 _table.Hotels.Update(hotel);
+
+                await _table.SaveChangesAsync();
             }
         }
 
-        public Task<IEnumerable<Hotel>> GetAllHotelDetails()
+        public async Task<IEnumerable<Hotel>> GetAllHotelDetails()
         {
             throw new NotImplementedException();
         }
