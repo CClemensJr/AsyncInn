@@ -22,9 +22,16 @@ namespace AsyncInn.Models.Services
 
 
 
-        public Task AddAmenity(Amenities amenities)
+        /// <summary>
+        /// This method takes in a room object and adds it to the database
+        /// </summary>
+        /// <param name="amenities"></param>
+        /// <returns>A Task object</returns>
+        public async Task AddAmenity(Amenities amenities)
         {
-            throw new NotImplementedException();
+            await _table.Amenities.AddAsync(amenities);
+
+            await _table.SaveChangesAsync();
         }
 
         public Task DeleteAmenity(int id)
