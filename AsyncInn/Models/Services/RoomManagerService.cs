@@ -54,9 +54,10 @@ namespace AsyncInn.Models.Services
             return await _table.Rooms.ToListAsync();
         }
 
-        public Task<Room> GetRoomDetails(int id)
+
+        public async Task<Room> GetRoomDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _table.Rooms.FindAsync(id);
         }
     }
 }
