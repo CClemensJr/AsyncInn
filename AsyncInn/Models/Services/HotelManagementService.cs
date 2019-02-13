@@ -9,7 +9,7 @@ namespace AsyncInn.Models.Services
 {
     public class HotelManagementService : IHotelManager
     {
-        private AsyncInnDbContext _hotel { get; }
+        private AsyncInnDbContext _table { get; }
 
         /// <summary>
         /// A custom contructor that assigns a dbcontext to the property
@@ -17,7 +17,7 @@ namespace AsyncInn.Models.Services
         /// <param name="hotel"></param>
         public HotelManagementService(AsyncInnDbContext hotel)
         {
-            _hotel = hotel;
+            _table = hotel;
         }
 
 
@@ -28,14 +28,20 @@ namespace AsyncInn.Models.Services
         /// <returns></returns>
         public async Task AddNewHotel(Hotel hotel)
         {
-            _hotel.Hotels.Add(hotel);
+            _table.Hotels.Add(hotel);
 
-            await _hotel.SaveChangesAsync();
+            await _table.SaveChangesAsync();
         }
 
         public async Task DeleteHotel(int id)
         {
-            throw new NotImplementedException();
+            Hotel hotel = await _table.Hotels.FindAsync(id);
+
+            if (hotel != null)
+            {
+                _table.Remove(hotel);
+
+            }
         }
 
         public void EditHotelDetails(Hotel hotel)
