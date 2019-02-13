@@ -40,9 +40,16 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A Task object</returns>
-        public Task DeleteAmenity(int id)
+        public async Task DeleteAmenity(int id)
         {
-            
+            Amenities amenity = await _table.Amenities.FindAsync(id);
+
+            if (amenity != null)
+            {
+                _table.Remove(amenity);
+
+                await _table.SaveChangesAsync();
+            }
         }
 
         public Task<IEnumerable<Amenities>> GetAllAmenities()
