@@ -82,9 +82,16 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="amenities"></param>
         /// <returns>A Task object</returns>
-        public Task UpdateAmenity(Amenities amenities)
+        public async Task UpdateAmenity(Amenities amenities)
         {
-            throw new NotImplementedException();
+            if (await _table.Amenities.FirstOrDefaultAsync(a => a.ID == amenities.ID) != null)
+            {
+                _table.Amenities.Update(amenities);
+
+                await _table.SaveChangesAsync();
+            }
+
+
         }
     }
 }
