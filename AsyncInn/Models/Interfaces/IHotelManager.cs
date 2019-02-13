@@ -16,9 +16,9 @@ namespace AsyncInn.Models.Interfaces
         Task<IEnumerable<Hotel>> GetAllHotels();
 
         // Update a Hotel
-        void EditHotelDetails(Hotel hotel);
+        Task EditHotelDetails(Hotel hotel);
 
         // Delete a Hotel
-        void DeleteHotel(int id);
+        Task DeleteHotel(int id);
     }
 }
