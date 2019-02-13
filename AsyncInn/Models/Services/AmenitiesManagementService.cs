@@ -21,6 +21,7 @@ namespace AsyncInn.Models.Services
         }
 
 
+
         public Task AddAmenity(Amenities amenities)
         {
             throw new NotImplementedException();
