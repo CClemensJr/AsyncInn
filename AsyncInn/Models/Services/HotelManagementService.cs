@@ -11,10 +11,15 @@ namespace AsyncInn.Models.Services
     {
         private AsyncInnDbContext _hotel { get; }
 
+        /// <summary>
+        /// A custom contructor that assigns a dbcontext to the property
+        /// </summary>
+        /// <param name="hotel"></param>
         public HotelManagementService(AsyncInnDbContext hotel)
         {
             _hotel = hotel;
         }
+
 
         /// <summary>
         /// The AddNewHotel method takes in a Hotel object and adds it to the database
