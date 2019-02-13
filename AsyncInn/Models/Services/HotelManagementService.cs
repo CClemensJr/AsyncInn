@@ -61,7 +61,7 @@ namespace AsyncInn.Models.Services
             return await _table.Hotels.ToListAsync();
         }
 
-        public Task<Hotel> GetHotelDetails(int id)
+        public async Task<Hotel> GetHotelDetails(int id)
         {
             throw new NotImplementedException();
         }
