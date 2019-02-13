@@ -76,6 +76,12 @@ namespace AsyncInn.Models.Services
             return amenity;
         }
 
+
+        /// <summary>
+        /// This method takes in an ameities object and updates it if it exists in the database
+        /// </summary>
+        /// <param name="amenities"></param>
+        /// <returns>A Task object</returns>
         public Task UpdateAmenity(Amenities amenities)
         {
             throw new NotImplementedException();
