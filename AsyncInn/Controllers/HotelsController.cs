@@ -24,10 +24,14 @@ namespace AsyncInn.Controllers
             _hotel = hotel;
         }
 
-        // GET: Hotels
+
+        /// <summary>
+        /// This action returns all table data to the Index page
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Hotels.ToListAsync());
+            return View(await _hotel.GetAllHotels());
         }
 
         // GET: Hotels/Details/5
