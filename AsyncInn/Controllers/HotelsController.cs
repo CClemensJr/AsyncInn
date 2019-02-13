@@ -26,7 +26,7 @@ namespace AsyncInn.Controllers
 
 
         /// <summary>
-        /// This action returns all table data to the Index page
+        /// This GET action returns all table data to the Index page
         /// </summary>
         /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
@@ -35,7 +35,7 @@ namespace AsyncInn.Controllers
         }
 
         /// <summary>
-        /// This action takes an id and sends an object with that ID to the view if it exists in the database
+        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
         /// </summary>
         /// <param name="id"></param>
         /// <returns>The result of an action method</returns>
@@ -52,7 +52,7 @@ namespace AsyncInn.Controllers
         }
 
         /// <summary>
-        /// This method renders the Create() view
+        /// This GET action renders the Create() view
         /// </summary>
         /// <returns>The result of an action method</returns>
         public IActionResult Create()
@@ -60,19 +60,22 @@ namespace AsyncInn.Controllers
             return View();
         }
 
-        // POST: Hotels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// This POST action creates a new object if it is valid then renders object Details page
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns>The result of an action method</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
+                await _hotel.AddNewHotel(hotel);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(hotel);
         }
 
