@@ -63,6 +63,12 @@ namespace AsyncInn.Models.Services
             return await _table.Amenities.ToListAsync();
         }
 
+
+        /// <summary>
+        /// This method gets a specified amenity if it exists in the table
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An amenity</returns>
         public Task<Amenities> GetAmenity(int id)
         {
             throw new NotImplementedException();
