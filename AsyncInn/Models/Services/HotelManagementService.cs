@@ -63,7 +63,7 @@ namespace AsyncInn.Models.Services
 
         public async Task<Hotel> GetHotelDetails(int id)
         {
-            throw new NotImplementedException();
+            return await _table.Hotels.FindAsync(id);
         }
     }
 }
