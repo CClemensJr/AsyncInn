@@ -16,9 +16,11 @@ namespace AsyncInn.Models.Services
             _table = room;
         }
 
-        public Task AddNewRoom(Room room)
+        public async Task AddNewRoom(Room room)
         {
-            throw new NotImplementedException();
+            _table.Rooms.Add(room);
+
+            await _table.SaveChangesAsync();
         }
 
         public Task DeleteRoom(int id)
