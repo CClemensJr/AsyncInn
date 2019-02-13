@@ -52,6 +52,11 @@ namespace AsyncInn.Models.Services
             }
         }
 
+
+        /// <summary>
+        /// This method gets all amenities in the database
+        /// </summary>
+        /// <returns>A collection of Amenities</returns>
         public Task<IEnumerable<Amenities>> GetAllAmenities()
         {
             throw new NotImplementedException();
