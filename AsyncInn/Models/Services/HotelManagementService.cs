@@ -33,7 +33,7 @@ namespace AsyncInn.Models.Services
             await _hotel.SaveChangesAsync();
         }
 
-        public void DeleteHotel(int id)
+        public async Task DeleteHotel(int id)
         {
             throw new NotImplementedException();
         }
