@@ -12,7 +12,7 @@ namespace AsyncInn.Models.Interfaces
 
         // Get Amenities
         Task<Amenities> GetAmenity(int id);
-        Task<IEnumerable<Amenities>> GetAmenities();
+        Task<IEnumerable<Amenities>> GetAllAmenities();
 
         // Updated Amenities
         void UpdateAmenity(Amenities amenities);
