@@ -34,16 +34,15 @@ namespace AsyncInn.Controllers
             return View(await _hotel.GetAllHotels());
         }
 
-        // GET: Hotels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        /// <summary>
+        /// This action takes an id and sends an object with that ID to the view if it exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var hotel = await _hotel.GetHotelDetails(id);
 
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
