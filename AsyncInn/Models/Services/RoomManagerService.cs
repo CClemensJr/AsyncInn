@@ -1,4 +1,5 @@
-﻿using AsyncInn.Models.Interfaces;
+﻿using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace AsyncInn.Models.Services
 {
     public class RoomManagerService : IRoomManager
     {
+        private AsyncInnDbContext _table { get; }
+
+        public RoomManagerService(AsyncInnDbContext room)
+        {
+            _table = room;
+        }
+
         public Task AddNewRoom(Room room)
         {
             throw new NotImplementedException();
