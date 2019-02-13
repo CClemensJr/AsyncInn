@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,14 @@ namespace AsyncInn.Models.Services
             }
         }
 
-        public Task EditRoomDetails(Room room)
+        public async Task EditRoomDetails(Room room)
         {
-            throw new NotImplementedException();
+            if (await _table.Rooms.FirstOrDefaultAsync(r => r.ID == room.ID) != null)
+            {
+                _table.Rooms.Update(room);
+
+                await _table.SaveChangesAsync();
+            }
         }
 
         public Task<IEnumerable<Room>> GetAllRooms()
