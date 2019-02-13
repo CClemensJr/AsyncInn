@@ -15,7 +15,7 @@ namespace AsyncInn.Models.Services
         /// <summary>
         /// A custom contructor that assigns a dbcontext to the property
         /// </summary>
-        /// <param name="hotel"></param>
+        /// <param name="room"></param>
         public RoomManagementService(AsyncInnDbContext room)
         {
             _table = room;
@@ -23,9 +23,9 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
-        /// The AddNewHotel method takes in a Hotel object and adds it to the database
+        /// The AddNewroom method takes in a room object and adds it to the database
         /// </summary>
-        /// <param name="hotel"></param>
+        /// <param name="room"></param>
         /// <returns>A Task object</returns>
         public async Task AddNewRoom(Room room)
         {
@@ -36,7 +36,7 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
-        /// Thus method deletes a hotel from the database if it exists and then saves the changes
+        /// Thus method deletes a room from the database if it exists and then saves the changes
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A Task object</returns>
@@ -54,9 +54,9 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
-        /// This method updates the details of a Hotel if it exists in the database then saves the changes
+        /// This method updates the details of a room if it exists in the database then saves the changes
         /// </summary>
-        /// <param name="hotel"></param>
+        /// <param name="room"></param>
         /// <returns>A Task object</returns>
         public async Task EditRoomDetails(Room room)
         {
@@ -70,9 +70,9 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
-        /// This method returns all of the Hotels in the database
+        /// This method returns all of the rooms in the database
         /// </summary>
-        /// <returns>A Task object carrying a list of Hotel objects</returns>
+        /// <returns>A Task object carrying a list of room objects</returns>
         public async Task<IEnumerable<Room>> GetAllRooms()
         {
             return await _table.Rooms.ToListAsync();
@@ -80,10 +80,10 @@ namespace AsyncInn.Models.Services
 
 
         /// <summary>
-        /// This method provides the details of a specific hotel in the database
+        /// This method provides the details of a specific room in the database
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>A Task object containing a Hotel</returns>
+        /// <returns>A Task object containing a room</returns>
         public async Task<Room> GetRoomDetails(int id)
         {
             return await _table.Rooms.FindAsync(id);

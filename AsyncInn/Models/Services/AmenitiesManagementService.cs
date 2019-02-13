@@ -10,6 +10,17 @@ namespace AsyncInn.Models.Services
     public class AmenitiesManagementService : IAmenitiesManager
     {
         private AsyncInnDbContext _table { get; }
+
+        /// <summary>
+        /// A custom contructor that assigns a dbcontext to the property
+        /// </summary>
+        /// <param name="amenity"></param>
+        public AmenitiesManagementService(AsyncInnDbContext amenity)
+        {
+            _table = amenity;
+        }
+
+
         public Task AddAmenity(Amenities amenities)
         {
             throw new NotImplementedException();
