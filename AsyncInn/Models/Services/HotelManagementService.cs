@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,10 @@ namespace AsyncInn.Models.Services
 
         public async Task EditHotelDetails(Hotel hotel)
         {
-            throw new NotImplementedException();
+            if (await _table.Hotels.FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
+            {
+                _table.Hotels.Update(hotel);
+            }
         }
 
         public Task<IEnumerable<Hotel>> GetAllHotelDetails()
