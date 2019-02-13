@@ -34,9 +34,15 @@ namespace AsyncInn.Models.Services
             await _table.SaveChangesAsync();
         }
 
+
+        /// <summary>
+        /// This method deletes an amenity from the database if it exists and then saves the changes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
         public Task DeleteAmenity(int id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task<IEnumerable<Amenities>> GetAllAmenities()
