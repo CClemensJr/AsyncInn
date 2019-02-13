@@ -79,19 +79,22 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        /// <summary>
+        /// This GET action takes an id and returns the details page for the database object with the same ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var hotel = await _hotel.EditHotelDetails(_hotel.GetHotelDetails(id).Result);
 
-            var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null)
             {
                 return NotFound();
             }
+
+            
+
             return View(hotel);
         }
 
