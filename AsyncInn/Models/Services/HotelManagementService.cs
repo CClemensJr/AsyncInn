@@ -41,6 +41,7 @@ namespace AsyncInn.Models.Services
             {
                 _table.Remove(hotel);
 
+                await _table.SaveChangesAsync();
             }
         }
 
