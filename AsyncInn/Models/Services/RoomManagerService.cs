@@ -48,9 +48,10 @@ namespace AsyncInn.Models.Services
             }
         }
 
-        public Task<IEnumerable<Room>> GetAllRooms()
+
+        public async Task<IEnumerable<Room>> GetAllRooms()
         {
-            throw new NotImplementedException();
+            return await _table.Rooms.ToListAsync();
         }
 
         public Task<Room> GetRoomDetails(int id)
