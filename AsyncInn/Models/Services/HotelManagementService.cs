@@ -45,7 +45,7 @@ namespace AsyncInn.Models.Services
             }
         }
 
-        public void EditHotelDetails(Hotel hotel)
+        public async Task EditHotelDetails(Hotel hotel)
         {
             throw new NotImplementedException();
         }
