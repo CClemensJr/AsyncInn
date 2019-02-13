@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,9 +58,9 @@ namespace AsyncInn.Models.Services
         /// This method gets all amenities in the database
         /// </summary>
         /// <returns>A collection of Amenities</returns>
-        public Task<IEnumerable<Amenities>> GetAllAmenities()
+        public async Task<IEnumerable<Amenities>> GetAllAmenities()
         {
-            throw new NotImplementedException();
+            return await _table.Amenities.ToListAsync();
         }
 
         public Task<Amenities> GetAmenity(int id)
