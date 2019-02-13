@@ -1,4 +1,5 @@
-﻿using AsyncInn.Models.Interfaces;
+﻿using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace AsyncInn.Models.Services
 {
     public class AmenitiesManagementService : IAmenitiesManager
     {
+        private AsyncInnDbContext _table { get; }
         public Task AddAmenity(Amenities amenities)
         {
             throw new NotImplementedException();
