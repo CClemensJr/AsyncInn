@@ -69,9 +69,11 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>An amenity</returns>
-        public Task<Amenities> GetAmenity(int id)
+        public async Task<Amenities> GetAmenity(int id)
         {
-            throw new NotImplementedException();
+            Amenities amenity = await _table.Amenities.FirstOrDefaultAsync(a => a.ID == id);
+
+            return amenity;
         }
 
         public Task UpdateAmenity(Amenities amenities)
