@@ -15,6 +15,10 @@ namespace AsyncInn.Controllers
     {
         private readonly IHotelManager _hotel;
 
+        /// <summary>
+        /// This custom constructor takes an interface object and assigns it to the property
+        /// </summary>
+        /// <param name="hotel"></param>
         public HotelsController(IHotelManager hotel)
         {
             _hotel = hotel;
