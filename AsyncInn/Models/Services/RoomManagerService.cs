@@ -16,6 +16,8 @@ namespace AsyncInn.Models.Services
             _table = room;
         }
 
+
+
         public async Task AddNewRoom(Room room)
         {
             _table.Rooms.Add(room);
@@ -23,9 +25,16 @@ namespace AsyncInn.Models.Services
             await _table.SaveChangesAsync();
         }
 
-        public Task DeleteRoom(int id)
+        public async Task DeleteRoom(int id)
         {
-            throw new NotImplementedException();
+            Room room = await _table.Rooms.FindAsync(id);
+
+            if (room != null)
+            {
+                _table.Rooms.Remove(room);
+
+                await _table.SaveChangesAsync();
+            }
         }
 
         public Task EditRoomDetails(Room room)
