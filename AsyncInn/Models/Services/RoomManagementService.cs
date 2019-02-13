@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.Services
 {
-    public class RoomManagerService : IRoomManager
+    public class RoomManagementService : IRoomManager
     {
         private AsyncInnDbContext _table { get; }
 
@@ -16,7 +16,7 @@ namespace AsyncInn.Models.Services
         /// A custom contructor that assigns a dbcontext to the property
         /// </summary>
         /// <param name="hotel"></param>
-        public RoomManagerService(AsyncInnDbContext room)
+        public RoomManagementService(AsyncInnDbContext room)
         {
             _table = room;
         }
