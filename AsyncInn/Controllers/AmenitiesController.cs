@@ -100,9 +100,13 @@ namespace AsyncInn.Controllers
             return View(amenities);
         }
 
-        // POST: Amenities/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amenities"></param>
+        /// <returns>The result of the action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Amenities amenities)
@@ -116,8 +120,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(amenities);
-                    await _context.SaveChangesAsync();
+                    await _amenities.UpdateAmenity(amenities);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -130,10 +133,13 @@ namespace AsyncInn.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(amenities);
         }
+
 
         // GET: Amenities/Delete/5
         public async Task<IActionResult> Delete(int? id)
