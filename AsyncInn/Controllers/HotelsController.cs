@@ -97,7 +97,7 @@ namespace AsyncInn.Controllers
         }
 
         /// <summary>
-        /// 
+        /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="hotel"></param>
@@ -115,8 +115,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(hotel);
-                    await _context.SaveChangesAsync();
+                    await _hotel.EditHotelDetails(hotel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -129,8 +128,10 @@ namespace AsyncInn.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(hotel);
         }
 
