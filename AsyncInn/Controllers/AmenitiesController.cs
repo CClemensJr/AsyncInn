@@ -7,24 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IAmenitiesManager _amenities;
 
-        public AmenitiesController(AsyncInnDbContext context)
+        /// <summary>
+        /// This is a custom constructor that facilitates dependency injection.
+        /// </summary>
+        /// <param name="amenities"></param>
+        public AmenitiesController(IAmenitiesManager amenities)
         {
-            _context = context;
+            _amenities = amenities;
         }
 
-        // GET: Amenities
+
+        /// <summary>
+        /// This GET action returns all table data to the Index page
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
         {
-            ViewData["BarText"] = "Amenities";
-
-            return View(await _context.Amenities.ToListAsync());
+            return View(await _amenities.GetAllAmenities());
         }
 
         // GET: Amenities/Details/5

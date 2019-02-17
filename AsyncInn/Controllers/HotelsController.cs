@@ -17,9 +17,9 @@ namespace AsyncInn.Controllers
 
 
         /// <summary>
-        /// This custom constructor takes an interface object and assigns it to the property
+        /// This is a custom constructor that facilitates dependency injection.
         /// </summary>
-        /// <param name="hotel"></param>
+        /// <param name="room"></param>
         public HotelsController(IHotelManager hotel)
         {
             _hotel = hotel;
