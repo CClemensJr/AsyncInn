@@ -102,7 +102,7 @@ namespace AsyncInn.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="hotel"></param>
-        /// <returns></returns>
+        /// <returns>The result of the action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone")] Hotel hotel)
