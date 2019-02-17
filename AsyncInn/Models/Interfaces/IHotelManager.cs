@@ -17,7 +17,7 @@ namespace AsyncInn.Models.Interfaces
         Task<IEnumerable<Hotel>> GetAllHotels();
 
         // Search for Hotels
-        Task<IEnumerable<Hotel>> SearchHotels();
+        Task<IEnumerable<Hotel>> SearchHotels(string searchString);
 
         // Update a Hotel
         Task EditHotelDetails(Hotel hotel);

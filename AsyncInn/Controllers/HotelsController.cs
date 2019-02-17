@@ -34,7 +34,7 @@ namespace AsyncInn.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                return View(await _hotel.SearchHotels(searchString);
+                return View(await _hotel.SearchHotels(searchString));
             }
 
             return View(await _hotel.GetAllHotels());
