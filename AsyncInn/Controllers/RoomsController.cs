@@ -158,14 +158,18 @@ namespace AsyncInn.Controllers
             return View(room);
         }
 
-        // POST: Rooms/Delete/5
+
+        /// <summary>
+        /// This POST action takes and ID then sends it to the delete method. The browser then redirects to the index page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
+            await _room.DeleteRoom(id);
+
             return RedirectToAction(nameof(Index));
         }
 
