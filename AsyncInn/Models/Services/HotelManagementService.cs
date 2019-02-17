@@ -58,7 +58,7 @@ namespace AsyncInn.Models.Services
         /// <returns>A Task object</returns>
         public async Task EditHotelDetails(Hotel hotel)
         {
-            if (await _table.Hotels.FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
+            if (await _table.Hotels.AsNoTracking().FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
             {
                 _table.Hotels.Update(hotel);
 
