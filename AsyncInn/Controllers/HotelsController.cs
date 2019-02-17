@@ -139,7 +139,7 @@ namespace AsyncInn.Controllers
         /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>A Task object</returns>
         public async Task<IActionResult> Delete(int id)
         {
             var hotel = await _hotel.GetHotel(id);
@@ -152,20 +152,28 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Delete/5
+        /// <summary>
+        /// This POST action takes and ID then sends it to the delete method. The browser then redirects to the index page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hotel = await _context.Hotels.FindAsync(id);
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
+            await _hotel.DeleteHotel(id);
+
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// This method takes an id, sends it to the get method, then returns true or false depending on if the id exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True or False</returns>
         private bool HotelExists(int id)
         {
-            return _context.Hotels.Any(e => e.ID == id);
+            return _hotel.GetHotel(id) != null;
         }
     }
 }
