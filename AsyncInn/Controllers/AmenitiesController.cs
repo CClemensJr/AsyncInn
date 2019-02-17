@@ -141,16 +141,15 @@ namespace AsyncInn.Controllers
         }
 
 
-        // GET: Amenities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        /// <summary>
+        /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var amenities = await _amenities.GetAmenity(id);
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.ID == id);
             if (amenities == null)
             {
                 return NotFound();
