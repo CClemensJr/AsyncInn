@@ -173,9 +173,15 @@ namespace AsyncInn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        /// <summary>
+        /// This method takes an id, sends it to the get method, then returns true or false depending on if the id exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True or False</returns>
         private bool RoomExists(int id)
         {
-            return _context.Rooms.Any(e => e.ID == id);
+            return _room.GetRoom(id) != null;
         }
     }
 }
