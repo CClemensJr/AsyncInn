@@ -52,6 +52,7 @@ namespace AsyncInn.Controllers
             return View(room);
         }
 
+
         /// <summary>
         /// This GET action renders the Create() view
         /// </summary>
@@ -60,6 +61,7 @@ namespace AsyncInn.Controllers
         {
             return View();
         }
+
 
         /// <summary>
         /// This POST action creates a new object if it is valid then renders object Details page
@@ -80,6 +82,7 @@ namespace AsyncInn.Controllers
             return View(room);
         }
 
+
         /// <summary>
         /// This GET action takes an id and returns the details page for the database object with the same ID
         /// </summary>
@@ -96,6 +99,7 @@ namespace AsyncInn.Controllers
 
             return View(room);
         }
+
 
         /// <summary>
         /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
@@ -136,16 +140,16 @@ namespace AsyncInn.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.ID == id);
+        /// <summary>
+        /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
+        public async Task<IActionResult> Delete(int id)
+        {
+            var room = await _room.GetRoom(id);
+
             if (room == null)
             {
                 return NotFound();

@@ -15,6 +15,7 @@ namespace AsyncInn.Controllers
     {
         private readonly IHotelManager _hotel;
 
+
         /// <summary>
         /// This custom constructor takes an interface object and assigns it to the property
         /// </summary>
@@ -52,6 +53,7 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
+
         /// <summary>
         /// This GET action renders the Create() view
         /// </summary>
@@ -60,6 +62,7 @@ namespace AsyncInn.Controllers
         {
             return View();
         }
+
 
         /// <summary>
         /// This POST action creates a new object if it is valid then renders object Details page
@@ -80,6 +83,7 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
+
         /// <summary>
         /// This GET action takes an id and returns the details page for the database object with the same ID
         /// </summary>
@@ -96,6 +100,7 @@ namespace AsyncInn.Controllers
 
             return View(hotel);
         }
+
 
         /// <summary>
         /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
@@ -136,6 +141,7 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
+
         /// <summary>
         /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
         /// </summary>
@@ -153,6 +159,7 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
+
         /// <summary>
         /// This POST action takes and ID then sends it to the delete method. The browser then redirects to the index page.
         /// </summary>
@@ -166,6 +173,7 @@ namespace AsyncInn.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
         /// <summary>
         /// This method takes an id, sends it to the get method, then returns true or false depending on if the id exists
