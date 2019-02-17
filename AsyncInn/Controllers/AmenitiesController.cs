@@ -83,19 +83,20 @@ namespace AsyncInn.Controllers
         }
 
 
-        // GET: Amenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        /// <summary>
+        /// This GET action takes an id and returns the details page for the database object with the same ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var amenities = await _amenities.GetAmenity(id);
 
-            var amenities = await _context.Amenities.FindAsync(id);
             if (amenities == null)
             {
                 return NotFound();
             }
+
             return View(amenities);
         }
 
