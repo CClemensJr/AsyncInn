@@ -7,12 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class RoomsController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IRoomManager _room;
+
+        /// <summary>
+        /// This is a custom constructor that facilitates dependency injection.
+        /// </summary>
+        /// <param name="room"></param>
+        public RoomsController(IRoomManager room)
+        {
+            _room = room;
+        }
 
         public RoomsController(AsyncInnDbContext context)
         {
