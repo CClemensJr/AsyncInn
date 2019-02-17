@@ -56,11 +56,9 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="hotel"></param>
         /// <returns>A Task object</returns>
-        public async Task EditHotelDetails(int id)
+        public async Task EditHotelDetails(Hotel hotel)
         {
-            Hotel hotel = await _table.Hotels.FindAsync(id);
-
-            if (hotel != null)
+            if (await _table.Hotels.FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
             {
                 _table.Hotels.Update(hotel);
 
