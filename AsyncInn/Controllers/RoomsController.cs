@@ -29,8 +29,13 @@ namespace AsyncInn.Controllers
         /// This GET action returns all table data to the Index page
         /// </summary>
         /// <returns>The result of an action method</returns>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                return View(await _room.SearchRooms(searchString);
+            }
+
             return View(await _room.GetAllRooms());
         }
 
