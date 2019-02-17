@@ -84,7 +84,7 @@ namespace AsyncInn.Models.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>A Task object containing a room</returns>
-        public async Task<Room> GetRoomDetails(int id)
+        public async Task<Room> GetRoom(int id)
         {
             return await _table.Rooms.FindAsync(id);
         }
