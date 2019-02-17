@@ -90,8 +90,6 @@ namespace AsyncInn.Models.Services
 
                 await _table.SaveChangesAsync();
             }
-
-
         }
 
         /// <summary>
