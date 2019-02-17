@@ -41,7 +41,7 @@ namespace AsyncInn.Controllers
         /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Details(int id)
         {
-            var hotel = await _hotel.GetHotelDetails(id);
+            var hotel = await _hotel.GetHotel(id);
 
             if (hotel == null)
             {
@@ -86,21 +86,22 @@ namespace AsyncInn.Controllers
         /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Edit(int id)
         {
-            var hotel = await _hotel.EditHotelDetails(_hotel.GetHotelDetails(id).Result);
+            var hotel = await _hotel.GetHotel(id);
 
             if (hotel == null)
             {
                 return NotFound();
             }
 
-            
-
             return View(hotel);
         }
 
-        // POST: Hotels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="hotel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone")] Hotel hotel)
