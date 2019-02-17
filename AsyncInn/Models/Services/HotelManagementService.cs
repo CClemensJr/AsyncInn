@@ -95,10 +95,7 @@ namespace AsyncInn.Models.Services
             var hotels = from h in _table.Hotels
                          select h;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                hotels = hotels.Where(h => h.Name.Contains(searchString));
-            }
+            hotels = hotels.Where(h => h.Address.Contains(searchString));
 
             return await hotels.ToListAsync();
         }
