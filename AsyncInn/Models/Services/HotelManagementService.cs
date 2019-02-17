@@ -93,9 +93,8 @@ namespace AsyncInn.Models.Services
         public async Task<IEnumerable<Hotel>> SearchHotels(string searchString)
         {
             var hotels = from h in _table.Hotels
+                         where h.Address.Contains(searchString)
                          select h;
-
-            hotels = hotels.Where(h => h.Address.Contains(searchString));
 
             return await hotels.ToListAsync();
         }
