@@ -7,36 +7,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class AmenitiesController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IAmenitiesManager _amenities;
 
-        public AmenitiesController(AsyncInnDbContext context)
+        /// <summary>
+        /// This is a custom constructor that facilitates dependency injection.
+        /// </summary>
+        /// <param name="amenities"></param>
+        public AmenitiesController(IAmenitiesManager amenities)
         {
-            _context = context;
+            _amenities = amenities;
         }
 
-        // GET: Amenities
+
+        /// <summary>
+        /// This GET action returns all table data to the Index page
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
         {
-            ViewData["BarText"] = "Amenities";
-
-            return View(await _context.Amenities.ToListAsync());
+            return View(await _amenities.GetAllAmenities());
         }
 
-        // GET: Amenities/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.ID == id);
+        /// <summary>
+        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Details(int id)
+        {
+            var amenities = await _amenities.GetAmenity(id);
+
             if (amenities == null)
             {
                 return NotFound();
@@ -45,47 +52,61 @@ namespace AsyncInn.Controllers
             return View(amenities);
         }
 
-        // GET: Amenities/Create
+
+        /// <summary>
+        /// This GET action renders the Create() view
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Amenities/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// This POST action creates a new object if it is valid then renders object Details page
+        /// </summary>
+        /// <param name="room"></param>
+        /// <returns>The result of an action method</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name")] Amenities amenities)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(amenities);
-                await _context.SaveChangesAsync();
+                await _amenities.AddAmenity(amenities);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(amenities);
         }
 
-        // GET: Amenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var amenities = await _context.Amenities.FindAsync(id);
+        /// <summary>
+        /// This GET action takes an id and returns the details page for the database object with the same ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Edit(int id)
+        {
+            var amenities = await _amenities.GetAmenity(id);
+
             if (amenities == null)
             {
                 return NotFound();
             }
+
             return View(amenities);
         }
 
-        // POST: Amenities/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amenities"></param>
+        /// <returns>The result of the action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Amenities amenities)
@@ -99,8 +120,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(amenities);
-                    await _context.SaveChangesAsync();
+                    await _amenities.UpdateAmenity(amenities);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -113,21 +133,23 @@ namespace AsyncInn.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(amenities);
         }
 
-        // GET: Amenities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var amenities = await _context.Amenities
-                .FirstOrDefaultAsync(m => m.ID == id);
+        /// <summary>
+        /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
+        public async Task<IActionResult> Delete(int id)
+        {
+            var amenities = await _amenities.GetAmenity(id);
+
             if (amenities == null)
             {
                 return NotFound();
@@ -136,20 +158,30 @@ namespace AsyncInn.Controllers
             return View(amenities);
         }
 
-        // POST: Amenities/Delete/5
+
+        /// <summary>
+        /// This POST action takes and ID then sends it to the delete method. The browser then redirects to the index page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var amenities = await _context.Amenities.FindAsync(id);
-            _context.Amenities.Remove(amenities);
-            await _context.SaveChangesAsync();
+            await _amenities.DeleteAmenity(id);
+
             return RedirectToAction(nameof(Index));
         }
 
+
+        /// <summary>
+        /// This method takes an id, sends it to the get method, then returns true or false depending on if the id exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True or False</returns>
         private bool AmenitiesExists(int id)
         {
-            return _context.Amenities.Any(e => e.ID == id);
+            return _amenities.GetAmenity(id) != null;
         }
     }
 }

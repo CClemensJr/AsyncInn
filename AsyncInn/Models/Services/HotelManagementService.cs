@@ -1,5 +1,6 @@
 ﻿using AsyncInn.Data;
 using AsyncInn.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,43 +10,79 @@ namespace AsyncInn.Models.Services
 {
     public class HotelManagementService : IHotelManager
     {
-        private AsyncInnDbContext _hotel { get; }
+        private AsyncInnDbContext _table { get; }
 
+        /// <summary>
+        /// A custom contructor that assigns a dbcontext to the property
+        /// </summary>
+        /// <param name="hotel"></param>
         public HotelManagementService(AsyncInnDbContext hotel)
         {
-            _hotel = hotel;
+            _table = hotel;
         }
+
 
         /// <summary>
         /// The AddNewHotel method takes in a Hotel object and adds it to the database
         /// </summary>
         /// <param name="hotel"></param>
-        /// <returns></returns>
+        /// <returns>A Task object</returns>
         public async Task AddNewHotel(Hotel hotel)
         {
-            _hotel.Hotels.Add(hotel);
+            _table.Hotels.Add(hotel);
 
-            await _hotel.SaveChangesAsync();
+            await _table.SaveChangesAsync();
         }
 
-        public void DeleteHotel(int id)
+        /// <summary>
+        /// Thus method deletes a hotel from the database if it exists and then saves the changes
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
+        public async Task DeleteHotel(int id)
         {
-            throw new NotImplementedException();
+            Hotel hotel = await _table.Hotels.FindAsync(id);
+
+            if (hotel != null)
+            {
+                _table.Remove(hotel);
+
+                await _table.SaveChangesAsync();
+            }
         }
 
-        public void EditHotelDetails(Hotel hotel)
+        /// <summary>
+        /// This method updates the details of a Hotel if it exists in the database then saves the changes
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns>A Task object</returns>
+        public async Task EditHotelDetails(Hotel hotel)
         {
-            throw new NotImplementedException();
+            if (await _table.Hotels.AsNoTracking().FirstOrDefaultAsync(h => h.ID == hotel.ID) != null)
+            {
+                _table.Hotels.Update(hotel);
+
+                await _table.SaveChangesAsync();
+            }
         }
 
-        public Task<IEnumerable<Hotel>> GetAllHotelDetails()
+        /// <summary>
+        /// This method returns all of the Hotels in the database
+        /// </summary>
+        /// <returns>A Task object carrying a list of Hotel objects</returns>
+        public async Task<IEnumerable<Hotel>> GetAllHotels()
         {
-            throw new NotImplementedException();
+            return await _table.Hotels.ToListAsync();
         }
 
-        public Task<Hotel> GetHotelDetails(int id)
+        /// <summary>
+        /// This method provides the details of a specific hotel in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object containing a Hotel</returns>
+        public async Task<Hotel> GetHotel(int id)
         {
-            throw new NotImplementedException();
+            return await _table.Hotels.FindAsync(id);
         }
     }
 }

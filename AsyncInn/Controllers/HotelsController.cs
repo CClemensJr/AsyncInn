@@ -7,34 +7,44 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AsyncInn.Data;
 using AsyncInn.Models;
+using AsyncInn.Models.Interfaces;
 
 namespace AsyncInn.Controllers
 {
     public class HotelsController : Controller
     {
-        private readonly AsyncInnDbContext _context;
+        private readonly IHotelManager _hotel;
 
-        public HotelsController(AsyncInnDbContext context)
+
+        /// <summary>
+        /// This is a custom constructor that facilitates dependency injection.
+        /// </summary>
+        /// <param name="room"></param>
+        public HotelsController(IHotelManager hotel)
         {
-            _context = context;
+            _hotel = hotel;
         }
 
-        // GET: Hotels
+
+        /// <summary>
+        /// This GET action returns all table data to the Index page
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Hotels.ToListAsync());
+            return View(await _hotel.GetAllHotels());
         }
 
-        // GET: Hotels/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
+        /// <summary>
+        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Details(int id)
+        {
+            var hotel = await _hotel.GetHotel(id);
+
             if (hotel == null)
             {
                 return NotFound();
@@ -43,47 +53,61 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Create
+
+        /// <summary>
+        /// This GET action renders the Create() view
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hotels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// This POST action creates a new object if it is valid then renders object Details page
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns>The result of an action method</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
-                await _context.SaveChangesAsync();
+                await _hotel.AddNewHotel(hotel);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(hotel);
         }
 
-        // GET: Hotels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var hotel = await _context.Hotels.FindAsync(id);
+        /// <summary>
+        /// This GET action takes an id and returns the details page for the database object with the same ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Edit(int id)
+        {
+            var hotel = await _hotel.GetHotel(id);
+
             if (hotel == null)
             {
                 return NotFound();
             }
+
             return View(hotel);
         }
 
-        // POST: Hotels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="hotel"></param>
+        /// <returns>The result of the action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone")] Hotel hotel)
@@ -97,8 +121,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(hotel);
-                    await _context.SaveChangesAsync();
+                    await _hotel.EditHotelDetails(hotel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -111,21 +134,23 @@ namespace AsyncInn.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(hotel);
         }
 
-        // GET: Hotels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
+        /// <summary>
+        /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
+        public async Task<IActionResult> Delete(int id)
+        {
+            var hotel = await _hotel.GetHotel(id);
+
             if (hotel == null)
             {
                 return NotFound();
@@ -134,20 +159,30 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Delete/5
+
+        /// <summary>
+        /// This POST action takes and ID then sends it to the delete method. The browser then redirects to the index page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Task object</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hotel = await _context.Hotels.FindAsync(id);
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
+            await _hotel.DeleteHotel(id);
+
             return RedirectToAction(nameof(Index));
         }
 
+
+        /// <summary>
+        /// This method takes an id, sends it to the get method, then returns true or false depending on if the id exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True or False</returns>
         private bool HotelExists(int id)
         {
-            return _context.Hotels.Any(e => e.ID == id);
+            return _hotel.GetHotel(id) != null;
         }
     }
 }
