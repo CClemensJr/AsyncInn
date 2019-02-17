@@ -135,16 +135,15 @@ namespace AsyncInn.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        /// <summary>
+        /// This GET action take an id then sends it to the get method. If the object exists, the browser returns the object view page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var hotel = await _hotel.GetHotel(id);
 
-            var hotel = await _context.Hotels
-                .FirstOrDefaultAsync(m => m.ID == id);
             if (hotel == null)
             {
                 return NotFound();
