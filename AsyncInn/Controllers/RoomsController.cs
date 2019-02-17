@@ -64,7 +64,7 @@ namespace AsyncInn.Controllers
         /// <summary>
         /// This POST action creates a new object if it is valid then renders object Details page
         /// </summary>
-        /// <param name="hotel"></param>
+        /// <param name="room"></param>
         /// <returns>The result of an action method</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,9 +97,12 @@ namespace AsyncInn.Controllers
             return View(room);
         }
 
-        // POST: Rooms/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// This POST method sends an object to the Edit method if the object exists then returns the user to the object details page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="room"></param>
+        /// <returns>The result of the action</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Layout")] Room room)
@@ -113,8 +116,7 @@ namespace AsyncInn.Controllers
             {
                 try
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
+                    await _room.EditRoomDetails(room);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -127,8 +129,10 @@ namespace AsyncInn.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(room);
         }
 
