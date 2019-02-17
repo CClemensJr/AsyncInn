@@ -61,19 +61,22 @@ namespace AsyncInn.Controllers
             return View();
         }
 
-        // POST: Rooms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// This POST action creates a new object if it is valid then renders object Details page
+        /// </summary>
+        /// <param name="hotel"></param>
+        /// <returns>The result of an action method</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Layout")] Room room)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(room);
-                await _context.SaveChangesAsync();
+                await _room.AddNewRoom(room);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(room);
         }
 
