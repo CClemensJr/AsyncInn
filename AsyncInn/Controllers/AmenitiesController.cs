@@ -41,24 +41,6 @@ namespace AsyncInn.Controllers
 
 
         /// <summary>
-        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The result of an action method</returns>
-        public async Task<IActionResult> Details(int id)
-        {
-            var amenities = await _amenities.GetAmenity(id);
-
-            if (amenities == null)
-            {
-                return NotFound();
-            }
-
-            return View(amenities);
-        }
-
-
-        /// <summary>
         /// This GET action renders the Create() view
         /// </summary>
         /// <returns>The result of an action method</returns>
