@@ -7,7 +7,7 @@
 <partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" for="@Model" />
 
 <div class="container">
-    <form asp-controller="Hotels" asp-action="Index" method="get" class="input-group mb-3">
+    <form asp-controller="HotelsController" asp-action="Index" method="get" class="input-group mb-3">
         <input type="text" name="SearchString" class="form-control" placeholder="Search Hotels by City or State" aria-label="Search Hotels" aria-describedby="basic-addon2" />
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">Search</button>
@@ -46,7 +46,6 @@
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>
