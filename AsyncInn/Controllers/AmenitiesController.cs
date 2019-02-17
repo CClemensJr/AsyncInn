@@ -53,7 +53,10 @@ namespace AsyncInn.Controllers
         }
 
 
-        // GET: Amenities/Create
+        /// <summary>
+        /// This GET action renders the Create() view
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public IActionResult Create()
         {
             return View();
