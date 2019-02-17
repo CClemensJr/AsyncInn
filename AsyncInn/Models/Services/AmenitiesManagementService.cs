@@ -84,7 +84,7 @@ namespace AsyncInn.Models.Services
         /// <returns>A Task object</returns>
         public async Task UpdateAmenity(Amenities amenities)
         {
-            if (await _table.Amenities.FirstOrDefaultAsync(a => a.ID == amenities.ID) != null)
+            if (await _table.Amenities.AsNoTracking().FirstOrDefaultAsync(a => a.ID == amenities.ID) != null)
             {
                 _table.Amenities.Update(amenities);
 

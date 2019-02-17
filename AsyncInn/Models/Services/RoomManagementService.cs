@@ -60,7 +60,7 @@ namespace AsyncInn.Models.Services
         /// <returns>A Task object</returns>
         public async Task EditRoomDetails(Room room)
         {
-            if (await _table.Rooms.FirstOrDefaultAsync(r => r.ID == room.ID) != null)
+            if (await _table.Rooms.AsNoTracking().FirstOrDefaultAsync(r => r.ID == room.ID) != null)
             {
                 _table.Rooms.Update(room);
 
