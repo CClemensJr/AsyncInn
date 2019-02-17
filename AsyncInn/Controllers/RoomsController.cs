@@ -24,16 +24,16 @@ namespace AsyncInn.Controllers
             _room = room;
         }
 
-        public RoomsController(AsyncInnDbContext context)
-        {
-            _context = context;
-        }
 
-        // GET: Rooms
+        /// <summary>
+        /// This GET action returns all table data to the Index page
+        /// </summary>
+        /// <returns>The result of an action method</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Rooms.ToListAsync());
+            return View(await _room.GetAllRooms());
         }
+
 
         // GET: Rooms/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -34,6 +34,7 @@ namespace AsyncInn.Controllers
             return View(await _hotel.GetAllHotels());
         }
 
+
         /// <summary>
         /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
         /// </summary>
