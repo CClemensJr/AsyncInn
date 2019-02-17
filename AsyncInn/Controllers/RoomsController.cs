@@ -35,16 +35,15 @@ namespace AsyncInn.Controllers
         }
 
 
-        // GET: Rooms/Details/5
-        public async Task<IActionResult> Details(int? id)
+        /// <summary>
+        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>The result of an action method</returns>
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var room = await _room.GetRoom(id);
 
-            var room = await _context.Rooms
-                .FirstOrDefaultAsync(m => m.ID == id);
             if (room == null)
             {
                 return NotFound();
