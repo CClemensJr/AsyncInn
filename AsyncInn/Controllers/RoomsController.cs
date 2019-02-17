@@ -33,7 +33,7 @@ namespace AsyncInn.Controllers
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                return View(await _room.SearchRooms(searchString);
+                return View(await _room.SearchRooms(searchString));
             }
 
             return View(await _room.GetAllRooms());
