@@ -42,10 +42,14 @@ namespace AsyncInn.Models.Services
         public async Task DeleteHotel(int id)
         {
             Hotel hotel = await _table.Hotels.FindAsync(id);
+            var hotelRooms = from hr in _table.HotelRooms
+                             where hr.HotelID == hotel.ID
+                             select hr;
 
             if (hotel != null)
             {
                 _table.Remove(hotel);
+                _table.Remove(hotelRooms.ToListAsync());
 
                 await _table.SaveChangesAsync();
             }
