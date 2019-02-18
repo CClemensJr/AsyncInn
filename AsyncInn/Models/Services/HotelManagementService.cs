@@ -98,5 +98,17 @@ namespace AsyncInn.Models.Services
 
             return await hotels.ToListAsync();
         }
+
+        /// <summary>
+        /// This method takes an id and returns the number of HotelRooms associated with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An integer representing the number of rooms</returns>
+        public int CountRooms(int id)
+        {
+            int numberOfRooms = _table.HotelRooms.Where(hr => hr.HotelID == id).Count();
+
+            return numberOfRooms;
+        }
     }
 }
