@@ -32,13 +32,25 @@ namespace AsyncInnTests.AmenitiesModelTests
         [Fact]
         public void CanSetID()
         {
+            Amenities amenity = new Amenities();
+            amenity.ID = 9;
+            amenity.Name = "Trampoline";
 
+            amenity.ID = 10;
+
+            Assert.Equal(10, amenity.ID);
         }
 
         [Fact]
         public void CanSetName()
         {
+            Amenities amenity = new Amenities();
+            amenity.ID = 9;
+            amenity.Name = "Trampoline";
 
+            amenity.Name = "Trambrotron";
+
+            Assert.Equal("Trambrotron", amenity.Name);
         }
     }
 }
