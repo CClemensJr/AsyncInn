@@ -1,4 +1,7 @@
-﻿@model IEnumerable<AsyncInn.Models.Hotel>
+﻿@using AsyncInn.Models
+@using AsyncInn.Models.Services
+@model IEnumerable<AsyncInn.Models.Hotel>
+@inject HotelManagementService Service
 
 @{
     ViewData["Title"] = "Hotels";
@@ -51,7 +54,11 @@
                         @Html.DisplayFor(modelItem => item.Phone)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NumberOfRooms);
+                        @{
+                            item.NumberOfRooms = Service.CountRooms(item.ID);
+                         }
+
+                        @Html.DisplayFor(modelItem => item.NumberOfRooms)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
