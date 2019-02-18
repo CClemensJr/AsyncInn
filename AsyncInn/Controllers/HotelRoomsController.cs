@@ -26,25 +26,6 @@ namespace AsyncInn.Controllers
             return View(await asyncInnDbContext.ToListAsync());
         }
 
-        // GET: HotelRooms/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var hotelRoom = await _context.HotelRooms
-                .Include(h => h.Hotel)
-                .FirstOrDefaultAsync(m => m.HotelID == id);
-            if (hotelRoom == null)
-            {
-                return NotFound();
-            }
-
-            return View(hotelRoom);
-        }
-
         // GET: HotelRooms/Create
         public IActionResult Create()
         {
