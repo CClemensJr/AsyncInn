@@ -35,31 +35,76 @@ namespace AsyncInnTests.ControllerTests
             }
         }
 
-        public void CanRead()
+        [Fact]
+        public async void CanRead()
         {
-            Amenities amenity = new Amenities();
-            amenity.ID = 9;
-            amenity.Name = "Trampoline";
+            DbContextOptions<AsyncInnDbContext> options =
+                new DbContextOptionsBuilder<AsyncInnDbContext>
+                ().UseInMemoryDatabase("ReadAmenities").Options;
 
-            Assert.Equal(9, amenity.ID);
+            using (AsyncInnDbContext _table = new AsyncInnDbContext(options))
+            {
+                Amenities amenity = new Amenities();
+                amenity.ID = 1;
+                amenity.Name = "Trampoline";
+
+                AmenitiesManagementService service = new AmenitiesManagementService(_table);
+
+                await service.AddAmenity(amenity);
+
+                Assert.Equal(1, amenity.ID);
+
+            }
         }
 
-        public void CanUpdate()
+        [Fact]
+        public async void CanUpdate()
         {
-            Amenities amenity = new Amenities();
-            amenity.ID = 9;
-            amenity.Name = "Trampoline";
+            DbContextOptions<AsyncInnDbContext> options =
+                new DbContextOptionsBuilder<AsyncInnDbContext>
+                ().UseInMemoryDatabase("UpdateAmenities").Options;
 
-            Assert.Equal(9, amenity.ID);
+            using (AsyncInnDbContext _table = new AsyncInnDbContext(options))
+            {
+                Amenities amenity = new Amenities();
+                amenity.ID = 1;
+                amenity.Name = "Trampoline";
+
+                AmenitiesManagementService service = new AmenitiesManagementService(_table);
+
+                await service.AddAmenity(amenity);
+
+                amenity.Name = "Trombonoline";
+
+                await service.UpdateAmenity(amenity);
+
+                Assert.Equal("Trombonoline", amenity.Name);
+
+            }
         }
 
-        public void CanDestroy()
+        [Fact]
+        public async void CanDestroy()
         {
-            Amenities amenity = new Amenities();
-            amenity.ID = 9;
-            amenity.Name = "Trampoline";
+            DbContextOptions<AsyncInnDbContext> options =
+                new DbContextOptionsBuilder<AsyncInnDbContext>
+                ().UseInMemoryDatabase("DeleteAmenities").Options;
 
-            Assert.Equal(9, amenity.ID);
+            using (AsyncInnDbContext _table = new AsyncInnDbContext(options))
+            {
+                Amenities amenity = new Amenities();
+                amenity.ID = 1;
+                amenity.Name = "Trampoline";
+
+                AmenitiesManagementService service = new AmenitiesManagementService(_table);
+
+                await service.AddAmenity(amenity);
+                await service.DeleteAmenity(amenity.ID);
+
+                var deletedAmenity = await _table.Amenities.FirstOrDefaultAsync(da => da.ID == amenity.ID);
+
+                Assert.Null(deletedAmenity);
+            }
         }
     }
 }
