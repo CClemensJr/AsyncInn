@@ -26,25 +26,6 @@ namespace AsyncInn.Controllers
             return View(await asyncInnDbContext.ToListAsync());
         }
 
-        // GET: HotelRooms/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var hotelRoom = await _context.HotelRooms
-                .Include(h => h.Hotel)
-                .FirstOrDefaultAsync(m => m.HotelID == id);
-            if (hotelRoom == null)
-            {
-                return NotFound();
-            }
-
-            return View(hotelRoom);
-        }
-
         // GET: HotelRooms/Create
         public IActionResult Create()
         {
@@ -59,14 +40,22 @@ namespace AsyncInn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelID,RoomNumber,RoomID,Rate,PetFriendly")] HotelRoom hotelRoom)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(hotelRoom);
-                await _context.SaveChangesAsync();
+                if (ModelState.IsValid)
+                {
+                    _context.Add(hotelRoom);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ViewData["HotelID"] = new SelectList(_context.Hotels, "ID", "ID", hotelRoom.HotelID);
+                return View(hotelRoom);
+            }
+            catch
+            {
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotels, "ID", "ID", hotelRoom.HotelID);
-            return View(hotelRoom);
         }
 
         // GET: HotelRooms/Edit/5
@@ -155,6 +144,12 @@ namespace AsyncInn.Controllers
         private bool HotelRoomExists(int id)
         {
             return _context.HotelRooms.Any(e => e.HotelID == id);
+        }
+
+        private bool IsUnique()
+        {
+
+            return false;
         }
     }
 }
