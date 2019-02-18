@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190218000931_UpdatedHotelRoomProperties")]
+    partial class UpdatedHotelRoomProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,6 +127,8 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("RoomNumber");
 
+                    b.Property<int>("HotelID1");
+
                     b.Property<byte>("PetFriendly");
 
                     b.Property<decimal>("Rate")
@@ -133,6 +137,8 @@ namespace AsyncInn.Migrations
                     b.Property<int>("RoomID");
 
                     b.HasKey("HotelID", "RoomNumber");
+
+                    b.HasIndex("HotelID1");
 
                     b.HasIndex("RoomID");
 
@@ -211,7 +217,7 @@ namespace AsyncInn.Migrations
                 {
                     b.HasOne("AsyncInn.Models.Hotel", "Hotel")
                         .WithMany("HotelRooms")
-                        .HasForeignKey("HotelID")
+                        .HasForeignKey("HotelID1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInn.Models.Room", "Room")
