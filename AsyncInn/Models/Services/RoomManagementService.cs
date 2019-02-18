@@ -102,5 +102,18 @@ namespace AsyncInn.Models.Services
 
             return await rooms.ToListAsync();
         }
+
+
+        /// <summary>
+        /// This method takes an id and returns the number of Room Amenities associated with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An integer representing the number of amenities</returns>
+        public int CountAmenities(int id)
+        {
+            int numberOfAmenities = _table.RoomAmenities.Where(ra => ra.RoomID == id).Count();
+
+            return numberOfAmenities;
+        }
     }
 }
