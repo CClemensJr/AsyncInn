@@ -40,14 +40,22 @@ namespace AsyncInn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelID,RoomNumber,RoomID,Rate,PetFriendly")] HotelRoom hotelRoom)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(hotelRoom);
-                await _context.SaveChangesAsync();
+                if (ModelState.IsValid)
+                {
+                    _context.Add(hotelRoom);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ViewData["HotelID"] = new SelectList(_context.Hotels, "ID", "ID", hotelRoom.HotelID);
+                return View(hotelRoom);
+            }
+            catch
+            {
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotels, "ID", "ID", hotelRoom.HotelID);
-            return View(hotelRoom);
         }
 
         // GET: HotelRooms/Edit/5
@@ -136,6 +144,12 @@ namespace AsyncInn.Controllers
         private bool HotelRoomExists(int id)
         {
             return _context.HotelRooms.Any(e => e.HotelID == id);
+        }
+
+        private bool IsUnique()
+        {
+
+            return false;
         }
     }
 }
