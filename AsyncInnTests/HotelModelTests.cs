@@ -14,6 +14,9 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
             Assert.Equal(25, hotel.ID);
         }
@@ -24,8 +27,11 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            Assert.Equal("Trampoline Inn", hotel.Name);
         }
 
         [Fact]
@@ -34,8 +40,11 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            Assert.Equal("555 Test Ave, Test Town, NJ 98900", hotel.Address);
         }
 
         [Fact]
@@ -44,8 +53,11 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            Assert.Equal("555-555-5555", hotel.Phone);
         }
 
         [Fact]
@@ -54,8 +66,11 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            Assert.Equal(5, hotel.NumberOfRooms);
         }
     }
 
@@ -67,8 +82,13 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            hotel.ID = 26;
+
+            Assert.Equal(26, hotel.ID);
         }
 
         [Fact]
@@ -77,8 +97,13 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            hotel.Name = "Trabrotron Inn";
+
+            Assert.Equal("Trabrotron Inn", hotel.Name);
         }
 
         [Fact]
@@ -87,8 +112,13 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            hotel.Address = "111 Test Ave, Test Town, NJ 98900";
+
+            Assert.Equal("111 Test Ave, Test Town, NJ 98900", hotel.Address);
         }
 
         [Fact]
@@ -97,8 +127,13 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            hotel.Phone = "555-555-6666";
+
+            Assert.Equal("555-555-6666", hotel.Phone);
         }
 
         [Fact]
@@ -107,8 +142,13 @@ namespace AsyncInnTests.HotelModelTests
             Hotel hotel = new Hotel();
             hotel.ID = 25;
             hotel.Name = "Trampoline Inn";
+            hotel.Address = "555 Test Ave, Test Town, NJ 98900";
+            hotel.Phone = "555-555-5555";
+            hotel.NumberOfRooms = 5;
 
-            Assert.Equal(25, hotel.ID);
+            hotel.NumberOfRooms = 15;
+
+            Assert.Equal(15, hotel.NumberOfRooms);
         }
     }
 }
