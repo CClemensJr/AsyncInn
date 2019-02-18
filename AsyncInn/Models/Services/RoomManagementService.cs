@@ -43,10 +43,19 @@ namespace AsyncInn.Models.Services
         public async Task DeleteRoom(int id)
         {
             Room room = await _table.Rooms.FindAsync(id);
+            var roomAmenities = from ra in _table.RoomAmenities
+                                where ra.RoomID == room.ID
+                                select ra;
+            await roomAmenities.ToListAsync();
 
             if (room != null)
             {
                 _table.Rooms.Remove(room);
+
+                foreach (var amenity in roomAmenities)
+                {
+                    _table.Remove(amenity);
+                }
 
                 await _table.SaveChangesAsync();
             }
