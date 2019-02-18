@@ -45,11 +45,16 @@ namespace AsyncInn.Models.Services
             var hotelRooms = from hr in _table.HotelRooms
                              where hr.HotelID == hotel.ID
                              select hr;
+            await hotelRooms.ToListAsync();
 
             if (hotel != null)
             {
                 _table.Remove(hotel);
-                _table.Remove(hotelRooms.ToListAsync());
+
+                foreach (var room in hotelRooms)
+                {
+                    _table.Remove(room);
+                }
 
                 await _table.SaveChangesAsync();
             }
