@@ -18,6 +18,9 @@ namespace AsyncInn.Models
         [Required]
         public int Layout { get; set; }
 
+        [Display(Name = "Room Amenities")]
+        public int NumberOfAmenities { get; set; }
+
         // Navigation properties
         public ICollection<HotelRoom> HotelRooms { get; set; }
         public ICollection<RoomAmenities> RoomAmenities { get; set;}

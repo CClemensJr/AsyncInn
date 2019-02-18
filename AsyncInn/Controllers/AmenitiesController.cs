@@ -29,27 +29,14 @@ namespace AsyncInn.Controllers
         /// This GET action returns all table data to the Index page
         /// </summary>
         /// <returns>The result of an action method</returns>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String searchString)
         {
-            return View(await _amenities.GetAllAmenities());
-        }
-
-
-        /// <summary>
-        /// This GET action takes an id and sends an object with that ID to the view if it exists in the database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The result of an action method</returns>
-        public async Task<IActionResult> Details(int id)
-        {
-            var amenities = await _amenities.GetAmenity(id);
-
-            if (amenities == null)
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return NotFound();
+                return View(await _amenities.SearchAmenities(searchString));
             }
 
-            return View(amenities);
+            return View(await _amenities.GetAllAmenities());
         }
 
 

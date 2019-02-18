@@ -1,12 +1,25 @@
-﻿@model IEnumerable<AsyncInn.Models.Hotel>
+﻿@using AsyncInn.Models
+@using AsyncInn.Models.Services
+@model IEnumerable<AsyncInn.Models.Hotel>
+@inject HotelManagementService Service
 
 @{
     ViewData["Title"] = "Hotels";
 }
 
-<partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" />
+<partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" for="@Model" />
 
 <div class="container">
+    <form asp-controller="Hotels" asp-action="Index" class="input-group mb-3">
+        <input type="text" name="SearchString" class="form-control" placeholder="Search Hotels by City or State" aria-label="Search Hotels" aria-describedby="basic-addon2" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <h5>Number of Hotels: @Model.ToArray().Length</h5> 
     <table class="table table-striped">
         <thead class="bg-info">
             <tr>
@@ -19,7 +32,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Phone)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfRooms)
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -36,8 +54,14 @@
                         @Html.DisplayFor(modelItem => item.Phone)
                     </td>
                     <td>
+                        @{
+                            item.NumberOfRooms = Service.CountRooms(item.ID);
+                         }
+
+                        @Html.DisplayFor(modelItem => item.NumberOfRooms)
+                    </td>
+                    <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>

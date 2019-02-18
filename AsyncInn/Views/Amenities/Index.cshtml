@@ -7,6 +7,17 @@
 <partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" />
 
 <div class="container">
+    <form asp-controller="Amenities" asp-action="Index" class="input-group mb-3">
+        <input type="text" name="SearchString" class="form-control" placeholder="Search for an amenity by name" aria-label="Search Amenities" aria-describedby="basic-addon2" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <h5>Number of Amenities: @Model.ToArray().Length</h5>
+
     <table class="table table-striped">
         <thead class="bg-info">
             <tr>
@@ -25,7 +36,6 @@
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>

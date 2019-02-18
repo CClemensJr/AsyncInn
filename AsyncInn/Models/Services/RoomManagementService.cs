@@ -88,5 +88,32 @@ namespace AsyncInn.Models.Services
         {
             return await _table.Rooms.FindAsync(id);
         }
+
+        /// <summary>
+        /// This method takes a search string, queries the db, then returns a list of all object with names that contain the search string
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>A list of room objects</returns>
+        public async Task<IEnumerable<Room>> SearchRooms(string searchString)
+        {
+            var rooms = from r in _table.Rooms
+                         where r.Name.Contains(searchString)
+                         select r;
+
+            return await rooms.ToListAsync();
+        }
+
+
+        /// <summary>
+        /// This method takes an id and returns the number of Room Amenities associated with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An integer representing the number of amenities</returns>
+        public int CountAmenities(int id)
+        {
+            int numberOfAmenities = _table.RoomAmenities.Where(ra => ra.RoomID == id).Count();
+
+            return numberOfAmenities;
+        }
     }
 }

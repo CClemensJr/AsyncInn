@@ -13,7 +13,11 @@ namespace AsyncInn.Models.Interfaces
         // Get Amenities
         Task<Amenities> GetAmenity(int id);
 
+        // Get all Amenities
         Task<IEnumerable<Amenities>> GetAllAmenities();
+
+        // Search for Hotels
+        Task<IEnumerable<Amenities>> SearchAmenities(string searchString);
 
         // Updated Amenities
         Task UpdateAmenity(Amenities amenities);

@@ -90,8 +90,20 @@ namespace AsyncInn.Models.Services
 
                 await _table.SaveChangesAsync();
             }
+        }
 
+        /// <summary>
+        /// This method takes a search string, queries the db, then returns a list of all object with names that contain the search string
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>A list of amenities objects</returns>
+        public async Task<IEnumerable<Amenities>> SearchAmenities(string searchString)
+        {
+            var amenities = from a in _table.Amenities
+                         where a.Name.Contains(searchString)
+                         select a;
 
+            return await amenities.ToListAsync();
         }
     }
 }

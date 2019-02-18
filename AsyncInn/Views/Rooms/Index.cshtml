@@ -1,4 +1,7 @@
-﻿@model IEnumerable<AsyncInn.Models.Room>
+﻿@using AsyncInn.Models
+@using AsyncInn.Models.Services
+@model IEnumerable<AsyncInn.Models.Room>
+@inject RoomManagementService Service
 
 @{
     ViewData["Title"] = "Rooms";
@@ -7,6 +10,17 @@
 <partial name="~/Views/Shared/_Page.cshtml" view-data="ViewData" />
 
 <div class="container">
+    <form asp-controller="Rooms" asp-action="Index" class="input-group mb-3">
+        <input type="text" name="SearchString" class="form-control" placeholder="Search for a Room by name" aria-label="Search Rooms" aria-describedby="basic-addon2" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <h5>Number of Rooms: @Model.ToArray().Length</h5>
+
     <table class="table table-striped">
         <thead class="bg-info">
             <tr>
@@ -16,7 +30,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Layout)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfAmenities)
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +49,14 @@
                         @Html.DisplayFor(modelItem => item.Layout)
                     </td>
                     <td>
+                        @{ 
+                            item.NumberOfAmenities = Service.CountAmenities(item.ID);
+                        }
+
+                        @Html.DisplayFor(modelItem => item.NumberOfAmenities)
+                    </td>
+                    <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                     </td>
                 </tr>

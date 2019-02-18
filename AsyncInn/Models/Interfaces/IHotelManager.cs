@@ -10,10 +10,14 @@ namespace AsyncInn.Models.Interfaces
         // Create a Hotel
         Task AddNewHotel(Hotel hotel);
 
-        // Get a Hotel/Hotels
+        // Get a Hotel
         Task<Hotel> GetHotel(int id);
 
+        // Get all Hotels
         Task<IEnumerable<Hotel>> GetAllHotels();
+
+        // Search for Hotels
+        Task<IEnumerable<Hotel>> SearchHotels(string searchString);
 
         // Update a Hotel
         Task EditHotelDetails(Hotel hotel);

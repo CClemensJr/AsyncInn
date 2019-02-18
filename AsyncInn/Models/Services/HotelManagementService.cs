@@ -84,5 +84,31 @@ namespace AsyncInn.Models.Services
         {
             return await _table.Hotels.FindAsync(id);
         }
+
+        /// <summary>
+        /// This method takes a search string, queries the db, then returns a list of all object with names that contain the search string
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>A list of hotel objects</returns>
+        public async Task<IEnumerable<Hotel>> SearchHotels(string searchString)
+        {
+            var hotels = from h in _table.Hotels
+                         where h.Address.Contains(searchString)
+                         select h;
+
+            return await hotels.ToListAsync();
+        }
+
+        /// <summary>
+        /// This method takes an id and returns the number of HotelRooms associated with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An integer representing the number of rooms</returns>
+        public int CountRooms(int id)
+        {
+            int numberOfRooms = _table.HotelRooms.Where(hr => hr.HotelID == id).Count();
+
+            return numberOfRooms;
+        }
     }
 }

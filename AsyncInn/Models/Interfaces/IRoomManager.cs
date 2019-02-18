@@ -12,8 +12,12 @@ namespace AsyncInn.Models.Interfaces
 
         // Get a Room
         Task<Room> GetRoom(int id);
-
+        
+        // Get all Rooms
         Task<IEnumerable<Room>> GetAllRooms();
+
+        // Search for Rooms
+        Task<IEnumerable<Room>> SearchRooms(string searchString);
 
         // Update a Room
         Task EditRoomDetails(Room room);

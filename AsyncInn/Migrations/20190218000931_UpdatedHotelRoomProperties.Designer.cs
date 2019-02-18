@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190218000931_UpdatedHotelRoomProperties")]
+    partial class UpdatedHotelRoomProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,8 +76,6 @@ namespace AsyncInn.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
-                    b.Property<int>("NumberOfRooms");
-
                     b.Property<string>("Phone")
                         .IsRequired();
 
@@ -89,7 +89,6 @@ namespace AsyncInn.Migrations
                             ID = 1,
                             Address = "123 N 82nd Ave, Sporkland, MI 53401",
                             Name = "Hotel Landria",
-                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -97,7 +96,6 @@ namespace AsyncInn.Migrations
                             ID = 2,
                             Address = "124 N 94th Ave, Avertine, WA 98002",
                             Name = "Hotel Alfansa",
-                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -105,7 +103,6 @@ namespace AsyncInn.Migrations
                             ID = 3,
                             Address = "1 N 15th Ave, Phoenix, AZ 85307",
                             Name = "Hotel Valdabash",
-                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -113,7 +110,6 @@ namespace AsyncInn.Migrations
                             ID = 4,
                             Address = "12000 N 142nd St, Yorktown, VA 24501",
                             Name = "Hotel Flatlinaz",
-                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -121,7 +117,6 @@ namespace AsyncInn.Migrations
                             ID = 5,
                             Address = "456 S 78910 Ave, Beachtown, CA 24512",
                             Name = "Hotel Bizzle",
-                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         });
                 });
@@ -132,6 +127,8 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("RoomNumber");
 
+                    b.Property<int>("HotelID1");
+
                     b.Property<byte>("PetFriendly");
 
                     b.Property<decimal>("Rate")
@@ -140,6 +137,8 @@ namespace AsyncInn.Migrations
                     b.Property<int>("RoomID");
 
                     b.HasKey("HotelID", "RoomNumber");
+
+                    b.HasIndex("HotelID1");
 
                     b.HasIndex("RoomID");
 
@@ -158,8 +157,6 @@ namespace AsyncInn.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
-                    b.Property<int>("NumberOfAmenities");
-
                     b.HasKey("ID");
 
                     b.ToTable("Rooms");
@@ -169,43 +166,37 @@ namespace AsyncInn.Migrations
                         {
                             ID = 1,
                             Layout = 0,
-                            Name = "Shuster Special",
-                            NumberOfAmenities = 0
+                            Name = "Shuster Special"
                         },
                         new
                         {
                             ID = 2,
                             Layout = 0,
-                            Name = "Samurai Slinky",
-                            NumberOfAmenities = 0
+                            Name = "Samurai Slinky"
                         },
                         new
                         {
                             ID = 3,
                             Layout = 1,
-                            Name = "Seattle Showdown",
-                            NumberOfAmenities = 0
+                            Name = "Seattle Showdown"
                         },
                         new
                         {
                             ID = 4,
                             Layout = 1,
-                            Name = "Slate Slade",
-                            NumberOfAmenities = 0
+                            Name = "Slate Slade"
                         },
                         new
                         {
                             ID = 5,
                             Layout = 2,
-                            Name = "Sapien Surge",
-                            NumberOfAmenities = 0
+                            Name = "Sapien Surge"
                         },
                         new
                         {
                             ID = 6,
                             Layout = 2,
-                            Name = "Shaddleback Shade",
-                            NumberOfAmenities = 0
+                            Name = "Shaddleback Shade"
                         });
                 });
 
@@ -226,7 +217,7 @@ namespace AsyncInn.Migrations
                 {
                     b.HasOne("AsyncInn.Models.Hotel", "Hotel")
                         .WithMany("HotelRooms")
-                        .HasForeignKey("HotelID")
+                        .HasForeignKey("HotelID1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInn.Models.Room", "Room")

@@ -24,7 +24,11 @@ namespace AsyncInn.Models
 
         [Required]
         [Phone]
+        [Display(Name = "Phone Number")]
         public string Phone { get; set; }
+
+        [Display(Name = "Hotel Rooms")]
+        public int NumberOfRooms { get; set; }
 
         // Navigation properies
         public ICollection<HotelRoom> HotelRooms { get; set; }
