@@ -6,13 +6,13 @@ namespace AsyncInnTests
     public class GetterTests
     {
         [Fact]
-        public void Test1()
+        public void CanGetID()
         {
 
         }
 
         [Fact]
-        public void Test2()
+        public void CanGetName()
         {
 
         }
@@ -21,13 +21,13 @@ namespace AsyncInnTests
     public class SetterTests
     {
         [Fact]
-        public void Test1()
+        public void CanSetID()
         {
 
         }
 
         [Fact]
-        public void Test2()
+        public void CanSetName()
         {
 
         }
